@@ -1,23 +1,27 @@
+import { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { profileFetch } from "../redux/actions";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { experienceFetch } from "../redux/actions";
 
-const ModaleModifica = props => {
+const ModalExperience = props => {
   let profile = useSelector(state => state.profile.content);
-  let [dispatchAgg, setDispatchAgg] = useState(0);
-  let [name, setName] = useState(profile?.name);
-  let [surname, setSurname] = useState(profile?.surname);
-  let [email, setEmail] = useState(profile?.email);
-  let [bio, setBio] = useState(profile?.bio);
-  let [title, setTitle] = useState(profile?.title);
-  let [area, setArea] = useState(profile?.area);
-  const dispatch = useDispatch();
-  const updateFetch = async () => {
-    const URL = "https://striveschool-api.herokuapp.com/api/profile/";
+  //   let [dispatchAgg, setDispatchAgg] = useState(0);
+  let dispatch = useDispatch();
+  let [role, setRole] = useState("");
+  let [company, setCompany] = useState("");
+  let [startDate, setStartDate] = useState("");
+  let [endDate, setEndDate] = useState("");
+  let [description, setDescription] = useState("");
+  let [area, setArea] = useState("");
+
+  const hendleSubmit = e => {
+    e.preventDefault();
+    addExperienceFetch();
+  };
+  const addExperienceFetch = async () => {
+    const URL = `https://striveschool-api.herokuapp.com/api/profile/${profile._id}/experiences`;
     const headers = {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization:
@@ -25,32 +29,26 @@ const ModaleModifica = props => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",
       },
       body: JSON.stringify({
-        name: name,
-        surname: surname,
-        email: email,
-        bio: bio,
-        title: title,
+        role: role,
+        company: company,
+        startDate: startDate,
+        endDate: endDate,
+        description: description,
         area: area,
       }),
     };
     try {
       let risposta = await fetch(URL, headers);
       if (risposta.ok) {
-        setDispatchAgg(dispatchAgg + 1);
+        // setDispatchAgg(dispatchAgg + 1);
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch(experienceFetch(profile._id));
     }
   };
 
-  useEffect(() => {
-    dispatch(profileFetch());
-  }, [dispatchAgg]);
-
-  const hendleSubmit = e => {
-    e.preventDefault();
-    updateFetch();
-  };
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
@@ -59,60 +57,58 @@ const ModaleModifica = props => {
       <Form onSubmit={hendleSubmit}>
         <Modal.Body>
           <Form.Group className="mb-3">
-            <Form.Label> Nome*</Form.Label>
+            <Form.Label> ruolo*</Form.Label>
             <Form.Control
               type="text"
-              value={name}
+              value={role}
               onChange={e => {
-                setName(e.target.value);
+                setRole(e.target.value);
               }}
-              placeholder="Inserisci il tuo nuovo nome"
+              placeholder="Inserisci il tuo ruolo"
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label> Cognome*</Form.Label>
+            <Form.Label> compagnia*</Form.Label>
             <Form.Control
               type="text"
-              value={surname}
+              value={company}
               onChange={e => {
-                setSurname(e.target.value);
+                setCompany(e.target.value);
               }}
-              placeholder=" Inserisci il tuo nuovo cognome"
+              placeholder=" Inserisci la tua compagnia"
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label> Email*</Form.Label>
+            <Form.Label> data di inizio*</Form.Label>
             <Form.Control
-              type="text"
-              value={email}
+              type="date"
+              value={startDate}
               onChange={e => {
-                setEmail(e.target.value);
+                setStartDate(e.target.value);
               }}
-              placeholder=" Inserisci la tua nuova email"
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="my-bio">Bio*</Form.Label>
+            <Form.Label htmlFor="my-bio">Data di fine*</Form.Label>
             <Form.Control
-              rows={5}
-              as="textarea"
-              value={bio}
+              value={endDate}
               onChange={e => {
-                setBio(e.target.value);
+                setEndDate(e.target.value);
               }}
-              placeholder=" Inserisci la tua nuova bio"
+              type="date"
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Titolo*</Form.Label>
+            <Form.Label>Descrizione*</Form.Label>
             <Form.Control
-              type="text"
-              value={title}
+              rows={5}
+              as="textarea"
+              value={description}
               onChange={e => {
-                setTitle(e.target.value);
+                setDescription(e.target.value);
               }}
-              placeholder=" Inserisci il tuo nuovo titolo"
+              placeholder=" Inserisci la descrizione"
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -123,7 +119,7 @@ const ModaleModifica = props => {
               onChange={e => {
                 setArea(e.target.value);
               }}
-              placeholder=" Inserisci la tua nuova localita "
+              placeholder=" Inserisci la localita "
             />
           </Form.Group>
           <small className="d-flex justify-content-end">*le seguenti aree sono obligatorie</small>
@@ -140,5 +136,4 @@ const ModaleModifica = props => {
     </Modal>
   );
 };
-
-export default ModaleModifica;
+export default ModalExperience;

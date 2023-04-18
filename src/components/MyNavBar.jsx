@@ -2,6 +2,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BsLinkedin } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
@@ -10,11 +11,14 @@ import { RiSuitcaseFill } from "react-icons/ri";
 import { BsChatRightDotsFill } from "react-icons/bs";
 import { BsBellFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
+import { CloseButton, Dropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import AziendeSideBar from "./AziendeSideBar";
+import { CgMenuGridR } from "react-icons/cg";
 
 function MyNavBar() {
   let profile = useSelector(state => state.profile.content);
+  const [showSubMenu, setShowSubMenu] = useState(false);
 
   return (
     <Navbar bg="light" expand="lg" sticky="top">
@@ -68,7 +72,7 @@ function MyNavBar() {
                     <div className="d-flex flex-column align-items-start ms-3 mt-3 mb-0">
                       <p>{profile?.name + " " + profile?.surname}</p>
                       <p>
-                        <small>{profile?.title}</small>
+                        <small>{profile?.area}</small>
                       </p>
 
                       <button className="rounded-5 border border-primary text-primary">Visualizza Profilo</button>
@@ -117,11 +121,29 @@ function MyNavBar() {
                 </Dropdown.Menu>
               </Dropdown>
             </span>
+            <Dropdown
+              className="dropdown mt-1 py-0 text-secondary mt-1"
+              variant="outline dark"
+              onClick={() => {
+                setShowSubMenu(true);
+              }}
+              id="dropdown-basic"
+            >
+              <div className="d-flex flex-column align-items-center">
+                <CgMenuGridR className="text-secondary fs-2" />
+                <Dropdown.Toggle variant="outline dark" id="dropdown-basic" className="py-0 text-secondary">
+                  Per le aziende
+                </Dropdown.Toggle>
+              </div>
+
+              {/* {(onClick = { handleSubMenu })} */}
+              {showSubMenu && <AziendeSideBar />}
+            </Dropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
-
+//
 export default MyNavBar;

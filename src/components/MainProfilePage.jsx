@@ -1,7 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { BiPencil, BiDotsHorizontalRounded } from "react-icons/bi";
 import { AiFillCamera } from "react-icons/ai";
-import { profileFetch } from "../redux/actions";
+import { experienceFetch, profileFetch } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import ConsigliatoPerTe from "./ConsigliatoPerTe";
@@ -17,12 +17,14 @@ const MainProfilePage = () => {
   let [photoModale, setPhotoModale] = useState(false);
   const dispatch = useDispatch();
   let profile = useSelector(state => state.profile.content);
+  let experience = useSelector(state => state.profile.experience);
   useEffect(() => {
     dispatch(profileFetch());
-    console.log(profile);
   }, []);
   useEffect(() => {
-    console.log(profile);
+    if (profile && profile._id != undefined) {
+      dispatch(experienceFetch(profile._id));
+    }
   }, [profile]);
 
   return (
