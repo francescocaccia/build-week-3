@@ -4,7 +4,7 @@
     border-radius: 100px;
     border: 6px solid white;
     position: absolute;
-    top: 25%;
+    top: 90px;
     left: 3%;
     background-size: cover;
 }
@@ -24,4 +24,30 @@ body {
 .my_progress {
     height: 8px;
     width: 90%;
+}
+
+
+.profileImg {
+    height: 28px;
+    width: 28px;
+    border-radius: 100px;
+    position: absolute;
+    background-size: cover;
+}
+
+.dropdown {
+    margin-top: 1.5rem;
+}
+
+.dropdownMenu {
+    position: relative;
+    right: 800px;
+}
+
+
+.profileImgDropDown {
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    background-size: cover;
 }

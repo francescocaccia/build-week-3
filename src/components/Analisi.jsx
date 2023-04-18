@@ -5,7 +5,7 @@ import { GoGraph, GoSearch } from "react-icons/go";
 import { Link } from "react-router-dom";
 const Analisi = () => {
   return (
-    <Container className="bg-white border border-2 mt-2 rounded pt-3 ps-4">
+    <Container className="bg-white border border-2 mt-2 rounded pt-3 ps-4 py-5">
       <Row>
         <h5 className="fw-semibold fs-4">Analisi</h5>
         <p className="text-secondary" variant="secondary">
@@ -47,5 +47,3 @@ const Analisi = () => {
 };
 
 export default Analisi;
-
-// GrApps

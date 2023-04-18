@@ -9,11 +9,13 @@ import { IoMdContacts } from "react-icons/io";
 import { RiSuitcaseFill } from "react-icons/ri";
 import { BsChatRightDotsFill } from "react-icons/bs";
 import { BsBellFill } from "react-icons/bs";
-import { RxAvatar } from "react-icons/rx";
 import { Link } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
+import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 function MyNavBar() {
+  let profile = useSelector(state => state.profile.content);
+
   return (
     <Navbar bg="light" expand="lg" sticky="top">
       <Container>
@@ -30,53 +32,87 @@ function MyNavBar() {
             </Link>
             <Link to="/network" className="d-flex flex-column align-items-center nav-link">
               <IoMdContacts className="text-secondary fs-3" />
-              <span>Network</span>
+              <span>Rete</span>
             </Link>
             <Link to="/network" className="d-flex flex-column align-items-center nav-link">
               <RiSuitcaseFill className="text-secondary fs-3" />
-              <span>Job</span>
+              <span>Lavoro</span>
             </Link>
             <Link to="/network" className="d-flex flex-column align-items-center nav-link">
               <BsChatRightDotsFill className="text-secondary fs-3" />
-              <span>Chat</span>
+              <span>Messaggistica</span>
             </Link>
             <Link to="/network" className="d-flex flex-column align-items-center nav-link">
               <BsBellFill className="text-secondary fs-3" />
-              <span>Notificatios</span>
+              <span>Notifiche</span>
             </Link>
-            <span className="d-flex flex-column align-items-center  nav-link">
-              <Dropdown>
-                <Dropdown.Toggle variant="outline dark" id="dropdown-basic" className="py-0">
-                  <RxAvatar className="text-secondary fs-3 d-block" />
-                  You
+            <span className="d-flex flex-column align-items-center nav-link">
+              <div
+                className="profileImg"
+                style={{
+                  backgroundImage: `url(${profile?.image})`,
+                }}
+              ></div>
+              <Dropdown className="dropdown">
+                <Dropdown.Toggle variant="outline dark" id="dropdown-basic" className="py-0 text-secondary">
+                  Tu
                 </Dropdown.Toggle>
+                <Dropdown.Menu className="dropdownMenu" align="end" id="dropdown-menu-align-end">
+                  <Dropdown.Item to="#/action-1" className="d-flex align-items-start">
+                    <div
+                      className="profileImgDropDown"
+                      style={{
+                        backgroundImage: `url(${profile?.image})`,
+                      }}
+                    ></div>
+                    <div className="d-flex flex-column align-items-start ms-3 mt-3 mb-0">
+                      <p>{profile?.name + " " + profile?.surname}</p>
+                      <p>
+                        <small>{profile?.title}</small>
+                      </p>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item to="#/action-1" className="d-flex">
-                    <img
-                      src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-HD-Image.png"
-                      alt="avatar"
-                      width={60}
-                      height={60}
-                      className="rounded-circle"
-                    />
-                    <div className="d-flex flex-column">
-                      <p>Antonello Buonaguidi</p>
-                      <p>IT Junior softaware developer full-stack</p>
-                      <button className="rounded border border-primary text-primary">Visualizza Profilo</button>
+                      <button className="rounded-5 border border-primary text-primary">Visualizza Profilo</button>
                     </div>
                   </Dropdown.Item>
                   <Dropdown.Item to="#/action-2">
-                    <h5>Account</h5>
-                    <Link to="/">Impostazioni e privacy</Link>
-                    <Link to="/">Guida</Link>
-                    <Link to="/">Lingua</Link>
+                    <h5 className="mt-3">Account</h5>
+                    <p>
+                      <Link style={{ textDecoration: "none" }} to="/" className="text-secondary">
+                        Impostazioni e privacy
+                      </Link>
+                    </p>
+                    <p>
+                      <Link to="/" style={{ textDecoration: "none" }} className="text-secondary">
+                        Guida
+                      </Link>
+                    </p>
+                    <p>
+                      <Link to="/" style={{ textDecoration: "none" }} className="text-secondary">
+                        Lingua
+                      </Link>
+                    </p>
                   </Dropdown.Item>
+                  <hr />
                   <Dropdown.Item to="#/action-3">
                     <h5>Gestisci</h5>
-                    <Link to="/">Post e attività</Link>
-                    <Link to="/">Account per la pubblicazione di offerte</Link>
-                    <Link to="/">Esci</Link>
+                    <p>
+                      <Link to="/" style={{ textDecoration: "none" }} className="text-secondary">
+                        Post e attività
+                      </Link>
+                    </p>
+                    <p>
+                      <Link to="/" style={{ textDecoration: "none" }} className="text-secondary">
+                        Account per la pubblicazione di offerte
+                      </Link>
+                    </p>
+                  </Dropdown.Item>
+                  <hr />
+                  <Dropdown.Item>
+                    <p>
+                      <Link to="/" style={{ textDecoration: "none" }} className="text-secondary">
+                        Esci
+                      </Link>
+                    </p>
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

@@ -3,19 +3,28 @@ import { BiPencil, BiDotsHorizontalRounded } from "react-icons/bi";
 import { AiFillCamera } from "react-icons/ai";
 import { profileFetch } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ConsigliatoPerTe from "./ConsigliatoPerTe";
 import Analisi from "./Analisi";
-
+import ModaleModifica from "./ModaleModifica";
+import Formazione from "./Formazione";
+import Risorse from "./Risorse";
+import Competenze from "./Competenze";
+import ModalPhoto from "./ModalPhoto";
+import Esperienza from "./Esperienza";
 const MainProfilePage = () => {
+  let [ModificaModale, setModificaModale] = useState(false);
+  let [photoModale, setPhotoModale] = useState(false);
   const dispatch = useDispatch();
   let profile = useSelector(state => state.profile.content);
   useEffect(() => {
     dispatch(profileFetch());
+    console.log(profile);
   }, []);
   useEffect(() => {
     console.log(profile);
   }, [profile]);
+
   return (
     <>
       <Card className=" position-relative ">
@@ -36,10 +45,19 @@ const MainProfilePage = () => {
           style={{
             backgroundImage: `url(${profile?.image})`,
           }}
+          onClick={() => {
+            setPhotoModale(true);
+          }}
         ></div>
 
-        <div className="d-flex justify-content-end mb-3">
-          <Button variant="outline-dark" className="border-0 mt-2 me-2">
+        <div className="d-flex justify-content-end mb-3 ">
+          <Button
+            variant="outline-dark"
+            className="border-0 mt-2 me-2"
+            onClick={() => {
+              setModificaModale(true);
+            }}
+          >
             <BiPencil className="fs-3" />
           </Button>
         </div>
@@ -72,6 +90,12 @@ const MainProfilePage = () => {
       </Card>
       <ConsigliatoPerTe />
       <Analisi />
+      <Risorse />
+      <Esperienza />
+      <Formazione />
+      <Competenze />
+      {ModificaModale && <ModaleModifica show={ModificaModale} onHide={() => setModificaModale(false)} />}
+      {photoModale && <ModalPhoto show={photoModale} onHide={() => setPhotoModale(false)} />}
     </>
   );
 };
