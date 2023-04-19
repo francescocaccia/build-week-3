@@ -18,9 +18,9 @@ const MainProfilePage = () => {
   const dispatch = useDispatch();
   let profile = useSelector(state => state.profile.content);
   let experience = useSelector(state => state.profile.experience);
-  useEffect(() => {
-    dispatch(profileFetch());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(profileFetch());
+  // }, []);
   useEffect(() => {
     if (profile && profile._id != undefined) {
       dispatch(experienceFetch(profile._id));

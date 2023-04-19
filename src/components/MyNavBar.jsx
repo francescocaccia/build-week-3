@@ -50,6 +50,7 @@ function MyNavBar() {
               <BsBellFill className="text-secondary fs-3" />
               <span>Notifiche</span>
             </Link>
+
             <span className="d-flex flex-column align-items-center nav-link">
               <div
                 className="profileImg"
@@ -69,13 +70,16 @@ function MyNavBar() {
                         backgroundImage: `url(${profile?.image})`,
                       }}
                     ></div>
-                    <div className="d-flex flex-column align-items-start ms-3 mt-3 mb-0">
-                      <p>{profile?.name + " " + profile?.surname}</p>
-                      <p>
-                        <small>{profile?.area}</small>
-                      </p>
+                    <div className="d-flex flex-column align-items-start ms-3 mb-0">
+                      <p className="mb-0">{profile?.name + " " + profile?.surname}</p>
 
-                      <button className="rounded-5 border border-primary text-primary">Visualizza Profilo</button>
+                      <small>{profile?.area}</small>
+
+                      <Link to="/profile">
+                        <button className="btnProfile rounded-5 border border-primary fw-bold text-primary mt-4 text-center">
+                          Visualizza Profilo
+                        </button>
+                      </Link>
                     </div>
                   </Dropdown.Item>
                   <Dropdown.Item to="#/action-2">

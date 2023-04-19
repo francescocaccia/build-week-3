@@ -1,7 +1,6 @@
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { AiOutlinePlus } from "react-icons/ai";
 
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ModalExperience from "./ModalExperience";
 import SingleExperience from "./SingleExperience";
@@ -9,9 +8,17 @@ import SingleExperience from "./SingleExperience";
 import { useSelector } from "react-redux";
 const Esperienza = () => {
   let [EsperienzaModale, setEsperienzaModale] = useState(false);
+  let [EsperienzaProfile, setEsperienzaProfile] = useState([]);
   let experience = useSelector(state => state.profile.experience);
   useEffect(() => {
-    console.log(experience);
+    console.log("esperienza Profilo", EsperienzaProfile);
+
+    console.log("esperienza Profilo", EsperienzaProfile);
+    console.log("esperienzagenerale", experience);
+    for (let i = 0; i <= 2; i++) {
+      console.log(i);
+      setEsperienzaProfile([...EsperienzaProfile, experience[i]]);
+    }
   }, [experience]);
 
   return (
@@ -32,7 +39,17 @@ const Esperienza = () => {
           </div>
         </Col>
 
-        {experience.length > 0 && experience.map(esperienza => <SingleExperience esperienza={esperienza} />)}
+        {experience.length > 0 &&
+          experience.length <= 3 &&
+          experience.map(esperienza => <SingleExperience key={esperienza._id} esperienza={esperienza} />)}
+        {experience.length > 3 && (
+          <>
+            {EsperienzaProfile.map(esperienza => (
+              <SingleExperience key={esperienza._id} esperienza={esperienza} />
+            ))}
+            <Button variant="secondary">visualizza Tutte le esperienze ({experience.length})</Button>
+          </>
+        )}
       </Row>
       {EsperienzaModale && <ModalExperience show={EsperienzaModale} onHide={() => setEsperienzaModale(false)} />}
     </Container>

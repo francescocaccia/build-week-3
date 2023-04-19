@@ -18,6 +18,7 @@ export const profileFetch = () => {
     const URL = "https://striveschool-api.herokuapp.com/api/profile/me";
     const headers = {
       headers: {
+        "Access-Control-Allow-Origin": "*",
         Authorization:
           "Bearer " +
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",
@@ -40,6 +41,7 @@ export const experienceFetch = userID => {
     const URL = `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`;
     const headers = {
       headers: {
+        "Access-Control-Allow-Origin": "*",
         Authorization:
           "Bearer " +
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",

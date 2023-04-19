@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { experienceFetch } from "../redux/actions";
+import { experienceFetch, profileFetch } from "../redux/actions";
 
 const SingleExperienceModal = props => {
   const formatDate = date => {
@@ -20,11 +20,45 @@ const SingleExperienceModal = props => {
   let [endDate, setEndDate] = useState(formatDate(props.esperienza.endDate));
   let [description, setDescription] = useState(props.esperienza.description);
   let [area, setArea] = useState(props.esperienza.area);
-
+  let [photo, setPhoto] = useState(props.esperienza.image);
   let dispatch = useDispatch();
   const hendleSubmit = e => {
     e.preventDefault();
     updateExperienceFetch();
+    updatePhoto();
+  };
+  const handleFileChange = event => {
+    setPhoto(event.target.files[0]);
+  };
+  const updatePhoto = async () => {
+    const formData = new FormData();
+    formData.append("experience", photo);
+
+    const URL = `https://striveschool-api.herokuapp.com/api/profile/${profile?._id}/experiences/${props.esperienza._id}/picture`;
+    const headers = {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+
+        Authorization:
+          "Bearer " +
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",
+      },
+      body: formData,
+    };
+    try {
+      let risposta = await fetch(URL, headers);
+      if (risposta.ok) {
+        console.log(risposta);
+      } else {
+        console.log(risposta);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log(photo);
+      dispatch(experienceFetch(profile._id));
+    }
   };
   const updateExperienceFetch = async () => {
     const URL = `https://striveschool-api.herokuapp.com/api/profile/${profile._id}/experiences/${props.esperienza._id}`;
@@ -129,6 +163,10 @@ const SingleExperienceModal = props => {
                 }}
                 placeholder=" Inserisci la localita "
               />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Image*</Form.Label>
+              <Form.Control type="file" onChange={handleFileChange} placeholder="Inserisci la tua immagine" required />
             </Form.Group>
             <small className="d-flex justify-content-end">*le seguenti aree sono obligatorie</small>
           </Modal.Body>

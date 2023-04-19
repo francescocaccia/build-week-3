@@ -5,7 +5,7 @@ import { experienceFetch } from "../redux/actions";
 
 const ModalExperience = props => {
   let profile = useSelector(state => state.profile.content);
-  //   let [dispatchAgg, setDispatchAgg] = useState(0);
+
   let dispatch = useDispatch();
   let [role, setRole] = useState("");
   let [company, setCompany] = useState("");
@@ -18,11 +18,13 @@ const ModalExperience = props => {
     e.preventDefault();
     addExperienceFetch();
   };
+
   const addExperienceFetch = async () => {
     const URL = `https://striveschool-api.herokuapp.com/api/profile/${profile._id}/experiences`;
     const headers = {
       method: "POST",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
         Authorization:
           "Bearer " +
@@ -122,6 +124,7 @@ const ModalExperience = props => {
               placeholder=" Inserisci la localita "
             />
           </Form.Group>
+
           <small className="d-flex justify-content-end">*le seguenti aree sono obligatorie</small>
         </Modal.Body>
         <Modal.Footer>

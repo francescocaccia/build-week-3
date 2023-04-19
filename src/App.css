@@ -52,6 +52,82 @@ body {
     background-size: cover;
 }
 
+.profile-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    border: 2px solid white;
+    position: absolute;
+    top: 20px;
+    left: 90px;
+    background-size: cover;
+}
+
+.numbers {
+    font-size: 0.8rem;
+}
+
+.discover {
+    text-align: center;
+}
+
+.buttonCollapse {
+    background-color: transparent;
+    border: none;
+    text-align: start;
+}
+
+.buttonCollapse:hover {
+    background-color: none;
+    border: none;
+}
+
+.profile-pic {
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    border: 1px solid rgb(255, 254, 254);
+
+    background-size: cover;
+
+}
+
+.input {
+    border: solid 1px grey;
+    padding-block: 0.5rem;
+    border-radius: 40px;
+}
+
+.dropdown {
+    background-color: transparent;
+    border: none;
+    color: black;
+}
+
+.footer {
+    width: 300px;
+}
+
+.sentence {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.footerText {
+    text-align: center;
+}
+
+.gratis {
+    text-decoration: solid black;
+}
+
+.btnProfile {
+    font-size: 0.9rem;
+    width: 200px;
+
+}
 
 /* ++++++++++++++++++++++++++++   aziende side bar   +++++++++++ */
 
