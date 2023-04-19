@@ -1,11 +1,14 @@
-import { Form, Button, Container } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Container } from "react-bootstrap";
 import { AiFillPicture } from "react-icons/ai";
 import { BsPlayBtnFill } from "react-icons/bs";
 import { MdNotes } from "react-icons/md";
 import { RiCalendarTodoFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
+import ModalPost from "./ModalPost";
 
 const AvviaPost = () => {
+  let [PostModale, setPostModale] = useState(false);
   let profile = useSelector(state => state.profile.content);
   return (
     <>
@@ -22,6 +25,9 @@ const AvviaPost = () => {
               style={{ width: "30rem", padding: "10px" }}
               className="input rounded-pill ms-2 border border-1 text-secondary fw-semibold"
               placeholder="Avvia un post"
+              onClick={() => {
+                setPostModale(true);
+              }}
             />
           </div>
         </div>
@@ -51,6 +57,7 @@ const AvviaPost = () => {
             </Button>
           </div>
         </div>
+        {PostModale && <ModalPost show={PostModale} onHide={() => setPostModale(false)} />}
       </Container>
     </>
   );
