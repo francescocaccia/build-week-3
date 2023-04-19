@@ -5,9 +5,12 @@ import ProfileCard from "./ProfileCard";
 import { useState } from "react";
 import CentralCardHome from "./CentralCardHome";
 import { useSelector } from "react-redux";
+import ModalModPost from "./ModalModPost";
 
 const HomePage = () => {
   let [azione, setAzione] = useState("Principali");
+  const [modificaPost, setModificaPost] = useState(false);
+
   let post = useSelector(state => state.home.content);
 
   return (
@@ -49,13 +52,14 @@ const HomePage = () => {
             </p>
           </div>
           {post.map(p => (
-            <CentralCardHome post={p} />
+            <CentralCardHome post={p} setModificaPost={setModificaPost} />
           ))}
         </Col>
         <Col xs={3}>
           <Notizie />
         </Col>
       </Row>
+      {modificaPost && <ModalModPost show={modificaPost} onHide={() => setModificaPost(false)} />}
     </Container>
   );
 };

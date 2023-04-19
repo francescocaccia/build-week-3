@@ -1,13 +1,40 @@
 import { Button, Container, CloseButton } from "react-bootstrap";
 import { RiSendPlaneFill } from "react-icons/ri";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots } from "react-icons/bs";
 import { SlLike } from "react-icons/sl";
 import { BiMessageRoundedDetail, BiWorld } from "react-icons/bi";
 import { HiOutlineArrowPathRoundedSquare } from "react-icons/hi2";
+import { BiPencil } from "react-icons/bi";
+import { BsTrash } from "react-icons/bs";
+import { getPostFetch } from "../redux/actions";
+import { useState } from "react";
+// import ModalModPost from "./ModalModPost";
+const CentralCardHome = ({ post, setModificaPost }) => {
+  //   const [modificaPost, setModificaPost] = useState(false);
 
-const CentralCardHome = ({ post }) => {
   let profile = useSelector(state => state.profile.content);
+  let dispatch = useDispatch();
+  const deletePost = async () => {
+    const URL = ` https://striveschool-api.herokuapp.com/api/posts/${post._id}`;
+    const headers = {
+      method: "DELETE",
+      headers: {
+        Authorization:
+          "Bearer " +
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",
+      },
+    };
+    try {
+      let risposta = await fetch(URL, headers);
+      if (risposta.ok) {
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(getPostFetch());
+    }
+  };
 
   return (
     <>
@@ -93,8 +120,19 @@ const CentralCardHome = ({ post }) => {
               <span className="text-secondary fw-semibold ms-2">Scrivi</span>
             </Button>
           </div>
+          {profile?._id === post?.user?._id && (
+            <Button variant="outline-danger" className="border-0" onClick={() => deletePost()}>
+              <BsTrash className=" fs-3" />
+            </Button>
+          )}
+          {profile?._id === post?.user?._id && (
+            <Button variant="outline-danger" className="border-0" onClick={() => setModificaPost(true)}>
+              <BiPencil className=" fs-3" />
+            </Button>
+          )}
         </div>
       </Container>
+      {/* {modificaPost && <ModalModPost show={modificaPost} onHide={() => setModificaPost(false)} />} */}
     </>
   );
 };
