@@ -41,23 +41,24 @@ const SingleExperience = ({ esperienza }) => {
         <div className="d-flex justify-content-start align-items-start mt-3">
           <div>
             {esperienza?.image && (
-              <img src={esperienza.image} alt="epicode_logo" width={60} height={60} className="rounded-circle me-3" />
+              <img src={esperienza?.image} alt="epicode_logo" width={60} height={60} className="rounded-circle me-3" />
             )}
           </div>
           <div>
             <span className="text-dark d-flex justify-content-center" style={{ textDecoration: "none" }}>
-              <h4>{esperienza.company}</h4>
+              <h4>{esperienza?.company}</h4>
             </span>
             <strong>Ruolo:</strong>
-            <p>{esperienza.role}</p>
-            <strong>dal─al:</strong>
+            <p>{esperienza?.role}</p>
+            <strong>Dal - al:</strong>
             <p>
-              {new Date(esperienza.startDate).toLocaleString()} ─ {new Date(esperienza.endDate).toLocaleString()}
+              {new Date(esperienza?.startDate).toLocaleDateString()} -{" "}
+              {new Date(esperienza?.endDate).toLocaleDateString()}
             </p>
             <strong>Luogo:</strong>
-            <p>{esperienza.area}</p>
-            <strong>descrizione:</strong>
-            <p>{esperienza.description}</p>
+            <p>{esperienza?.area}</p>
+            <strong>Descrizione:</strong>
+            <p>{esperienza?.description}</p>
           </div>
           <div className="flex-fill d-flex justify-content-end">
             <Button

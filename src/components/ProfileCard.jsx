@@ -8,7 +8,7 @@ const ProfileCard = () => {
   let profile = useSelector(state => state.profile.content);
   return (
     <>
-      <Card style={{ width: "16rem" }}>
+      <Card>
         <Card.Img
           variant="top"
           src="https://th.bing.com/th/id/R.ff3be19ebea75c72d7fd8ac60ea78608?rik=AKHdPWCm7sR53g&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f1%2f8%2f1%2f465351.jpg&ehk=gTiwWaizscf0N%2fARLGhMtzE5LXZk1DMRHhdwFkriXAI%3d&risl=&pid=ImgRaw&r=0"
@@ -37,7 +37,7 @@ const ProfileCard = () => {
             </Link>
             <p className="numbers fw-bold">Espandi la tua rete</p>
           </ListGroup.Item>
-          <hr />
+          <hr className="flex-fill" />
           <ListGroup.Item className="pt-3 pb-1">
             <Link className="d-flex justify-content-between align-items-center text-decoration-none">
               <p className="numbers mb-0 text-secondary fw-bold">Accedi a strumenti e informazioni in esclusiva</p>
@@ -49,7 +49,7 @@ const ProfileCard = () => {
               </p>
             </Link>
           </ListGroup.Item>
-          <hr />
+          <hr className="flex-fill" />
           <ListGroup.Item className="pt-3 pb-1">
             <Link className="d-flex justify-content-between align-items-center text-decoration-none">
               <p className="numbers mb-0 pb-2 text-dark fw-bold">
@@ -59,7 +59,7 @@ const ProfileCard = () => {
           </ListGroup.Item>
         </ListGroupItem>
       </Card>
-      <Card className="mt-2" style={{ width: "16rem" }}>
+      <Card className="mt-2">
         <ListGroup className="list-group-flush">
           <ListGroup.Item className="pt-3 pb-1">
             <Link className="text-decoration-none">

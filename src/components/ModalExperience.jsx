@@ -54,12 +54,12 @@ const ModalExperience = props => {
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Modifica</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">Aggiungi</Modal.Title>
       </Modal.Header>
       <Form onSubmit={hendleSubmit}>
         <Modal.Body>
           <Form.Group className="mb-3">
-            <Form.Label> ruolo*</Form.Label>
+            <Form.Label> Ruolo*</Form.Label>
             <Form.Control
               type="text"
               value={role}
@@ -70,7 +70,7 @@ const ModalExperience = props => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label> compagnia*</Form.Label>
+            <Form.Label> Compagnia*</Form.Label>
             <Form.Control
               type="text"
               value={company}
@@ -81,7 +81,7 @@ const ModalExperience = props => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label> data di inizio*</Form.Label>
+            <Form.Label> Data di inizio*</Form.Label>
             <Form.Control
               type="date"
               value={startDate}
@@ -121,11 +121,11 @@ const ModalExperience = props => {
               onChange={e => {
                 setArea(e.target.value);
               }}
-              placeholder=" Inserisci la localita "
+              placeholder=" Inserisci la località"
             />
           </Form.Group>
 
-          <small className="d-flex justify-content-end">*le seguenti aree sono obligatorie</small>
+          <small className="d-flex justify-content-end">*Le seguenti aree sono obbligatorie</small>
         </Modal.Body>
         <Modal.Footer>
           <Button type="button" variant="danger" onClick={props.onHide}>

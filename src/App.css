@@ -59,7 +59,7 @@ body {
     border: 2px solid white;
     position: absolute;
     top: 20px;
-    left: 90px;
+    left: 120px;
     background-size: cover;
 }
 
@@ -161,6 +161,24 @@ body {
 .list {
     list-style: none;
 }
+
+
+#dropDownHome {
+    border: none;
+    background-color: rgba(243, 242, 239, 1);
+    color: black;
+}
+
+#iconCentralCardHome {
+    background-color: #fefefe;
+    border: none;
+}
+
+#iconCentralCardHome :hover {
+    background-color: rgba(243, 242, 239, 1);
+    border: none;
+}
+
 
 /* 
 

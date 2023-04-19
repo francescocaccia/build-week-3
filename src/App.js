@@ -4,7 +4,8 @@ import "./App.css";
 import MyNavBar from "./components/MyNavBar";
 import ProfilePage from "./components/ProfilePage";
 import HomePage from "./components/HomePage";
-import { profileFetch } from "./redux/actions";
+import ExperiencesPage from "./components/ExperiencesPage";
+import { getPostFetch, profileFetch } from "./redux/actions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -12,6 +13,7 @@ function App() {
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(profileFetch());
+    dispatch(getPostFetch());
   }, []);
   return (
     <>
@@ -19,6 +21,7 @@ function App() {
         <MyNavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/experiences" element={<ExperiencesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>

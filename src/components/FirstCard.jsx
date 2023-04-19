@@ -20,7 +20,7 @@ const FirstCard = () => {
       <Col xs={12} md={6}>
         <img
           src="https://media.licdn.com/dms/image/C5112AQE1GRp1EditFQ/article-cover_image-shrink_600_2000/0/1520161982525?e=2147483647&v=beta&t=HBNIam_Ad6iD3lF--TLhStVygirueWysxJejUV7Xt1g"
-          alt="HR_recrutment"
+          alt="HR_recruitment"
           width={100}
           height={100}
         />

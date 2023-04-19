@@ -26,26 +26,26 @@ const AvviaPost = () => {
           </div>
         </div>
         <div className="d-flex justify-content-between mt-3 mb-4">
-          <div>
-            <Button variant="light" className="mb-0 ms-2">
+          <div id="iconCentralCardHome">
+            <Button id="iconCentralCardHome" variant="light" className="mb-0 ms-2">
               <AiFillPicture className="text-primary fs-4 mx-1" />
               <span className="text-secondary fw-semibold ms-2">Foto</span>
             </Button>
           </div>
-          <div>
-            <Button variant="light" className="mb-0 ms-2">
+          <div id="iconCentralCardHome">
+            <Button id="iconCentralCardHome" variant="light" className="mb-0 ms-2">
               <BsPlayBtnFill className="text-success fs-4 mx-1" />
               <span className="text-secondary fw-semibold ms-2">Video</span>
             </Button>
           </div>
-          <div>
-            <Button variant="light" className="mb-0 ms-2">
+          <div id="iconCentralCardHome">
+            <Button id="iconCentralCardHome" variant="light" className="mb-0 ms-2">
               <RiCalendarTodoFill className="text-warning fs-4 mx-1" />{" "}
               <span className="text-secondary fw-semibold ms-2">Evento</span>
             </Button>
           </div>
-          <div>
-            <Button variant="light" className="mb-0 ms-2 mx-1">
+          <div id="iconCentralCardHome">
+            <Button id="iconCentralCardHome" variant="light" className="mb-0 ms-2 mx-1">
               <MdNotes className="text-warning fs-4" />{" "}
               <span className="text-secondary fw-semibold ms-2">Scrivi un articolo</span>
             </Button>

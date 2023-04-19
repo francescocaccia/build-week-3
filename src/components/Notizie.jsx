@@ -5,7 +5,7 @@ import CollapseNews from "./CollapseNews";
 import { useSelector } from "react-redux";
 import { BiPlus } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
-import { FaKey, FaCaretDown, FaLinkedin } from "react-icons/fa";
+import { FaCaretDown, FaLinkedin } from "react-icons/fa";
 import logo from "../linkedin.png";
 const Notizie = () => {
   let profile = useSelector(state => state.profile.content);
@@ -68,7 +68,7 @@ const Notizie = () => {
                   backgroundImage: `url(${profile?.image})`,
                 }}
               ></div>
-              <FaKey className="fs-1 text-primary" />
+              <FaLinkedin className="fs-1 text-warning" />
             </div>
             <p className="text-center fs-6 mt-3">See who's viewed your profile in the last 90 days</p>
             <div className="text-center">

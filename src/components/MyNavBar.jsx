@@ -129,7 +129,7 @@ function MyNavBar() {
               className="dropdown mt-1 py-0 text-secondary mt-1"
               variant="outline dark"
               onClick={() => {
-                setShowSubMenu(true);
+                setShowSubMenu(!showSubMenu);
               }}
               id="dropdown-basic"
             >
