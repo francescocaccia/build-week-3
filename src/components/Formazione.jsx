@@ -20,7 +20,7 @@ const Formazione = () => {
             <div>
               <img
                 src="https://s3-eu-west-1.amazonaws.com/tpd/logos/62a6277627ee655c1226b624/0x0.png"
-                alt="epicode_logo"
+                alt="Logo"
                 width={60}
                 height={60}
                 className="rounded-circle me-3"

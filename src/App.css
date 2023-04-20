@@ -212,11 +212,23 @@ body {
 
 }
 
+.spinnerBackground {
+    background-color: rgba(0, 0, 0, 0.534);
+    z-index: 2000;
+}
+
 .small {
     width: 150px;
     font-size: 1rem;
 }
 
+.dropdown-width {
+    width: 400px;
+}
+
+.fake-input {
+    min-width: 200px;
+}
 
 .dropdown-custom::after {
     display: none !important;
@@ -232,5 +244,26 @@ body {
 
 .jobOffer:hover {
     background-color: rgba(243, 242, 239, 1);
+}
+
+.chat {
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+}
+
+.btnChat {
+    width: 300px;
+    height: 50px;
+    border-radius: 40px;
+
+
+}
+
+.profileChat {
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    background-size: cover;
 
 }

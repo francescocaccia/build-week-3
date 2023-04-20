@@ -1,7 +1,8 @@
-import { GET_JOB } from "../actions";
+import { GET_JOB, GET_QUERY_JOB } from "../actions";
 
 const defaultState = {
   content: null,
+  queryJobs: [],
 };
 
 const jobsReducer = (state = defaultState, action) => {
@@ -10,6 +11,11 @@ const jobsReducer = (state = defaultState, action) => {
       return {
         ...state,
         content: action.payload,
+      };
+    case GET_QUERY_JOB:
+      return {
+        ...state,
+        queryJobs: action.payload,
       };
 
     default:

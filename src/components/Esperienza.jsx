@@ -58,7 +58,7 @@ const Esperienza = () => {
                 navigate("/experiences");
               }}
             >
-              visualizza Tutte le esperienze ({experience.length})
+              Visualizza tutte le esperienze ({experience.length})
             </Button>
           </>
         )}

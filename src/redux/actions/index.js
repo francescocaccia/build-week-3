@@ -3,7 +3,11 @@ export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const SET_EXPERIENCE = "SET_EXPERIENCE";
 export const GET_POST = "GET_POST";
 export const GET_JOB = "GET_JOB";
+export const GET_QUERY_JOB = "GET_QUERY_JOB";
 
+export const getQueryJobAction = dato => {
+  return { type: GET_QUERY_JOB, payload: dato };
+};
 export const setExperienceAction = dato => {
   return { type: SET_EXPERIENCE, payload: dato };
 };
@@ -109,6 +113,29 @@ export const getJobFetch = () => {
       if (risposta.ok) {
         let dato = await risposta.json();
         dispatch(getJobAction(dato));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getQueryJobFetch = (parametro, query) => {
+  return async dispatch => {
+    const URL = `https://strive-benchmark.herokuapp.com/api/jobs?${parametro}=${query}&limit=30`;
+    const headers = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        Authorization:
+          "Bearer " +
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",
+      },
+    };
+    try {
+      let risposta = await fetch(URL, headers);
+      if (risposta.ok) {
+        let dato = await risposta.json();
+        dispatch(getQueryJobAction(dato));
       }
     } catch (error) {
       console.log(error);

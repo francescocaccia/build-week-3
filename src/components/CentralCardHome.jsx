@@ -48,7 +48,7 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
         <div className="px-2 d-flex justify-content-between align-items-center">
           <div>
             <img
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+              src="https://s3-eu-west-1.amazonaws.com/tpd/logos/62a6277627ee655c1226b624/0x0.png"
               alt="Profile-pic"
               width={25}
               height={25}
@@ -115,12 +115,10 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
 
         <div>
           <p className="numbers ps-3">{post?.text}</p>
-          {post?.image ? (
+          {post?.image && (
             <div className="text-center">
               <img src={post?.image} alt="Post-pic" width={500} height={250} style={{ objectFit: "cover" }} />
             </div>
-          ) : (
-            <Alert variant="warning">Questo post non ha un'immagine</Alert>
           )}
         </div>
         <hr />

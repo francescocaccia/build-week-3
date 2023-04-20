@@ -13,6 +13,7 @@ const ModaleModifica = props => {
   let [bio, setBio] = useState(profile?.bio);
   let [title, setTitle] = useState(profile?.title);
   let [area, setArea] = useState(profile?.area);
+
   const dispatch = useDispatch();
   const updateFetch = async () => {
     const URL = "https://striveschool-api.herokuapp.com/api/profile/";

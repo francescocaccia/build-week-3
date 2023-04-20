@@ -1,4 +1,4 @@
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal, Form, Spinner } from "react-bootstrap";
 import { getPostFetch } from "../redux/actions";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,9 +8,10 @@ const ModalPost = props => {
   let profile = useSelector(state => state.profile.content);
   let [text, setText] = useState("");
   let [photo, setPhoto] = useState("");
-
+  let [spinner, setSpinner] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
+    setSpinner(true);
     addNewPostFetch();
   };
 
@@ -70,44 +71,53 @@ const ModalPost = props => {
       console.log(error);
     } finally {
       dispatch(getPostFetch());
+      setSpinner(false);
     }
   };
   return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {profile?.name} {profile?.surname}
-        </Modal.Title>
-      </Modal.Header>
+    <>
+      <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            {profile?.name} {profile?.surname}
+          </Modal.Title>
+        </Modal.Header>
 
-      <Form onSubmit={handleSubmit}>
-        <Modal.Body>
-          <Form.Group className="mb-3">
-            <Form.Control
-              as="textarea"
-              rows={5}
-              value={text}
-              onChange={e => {
-                setText(e.target.value);
-              }}
-              placeholder="Di cosa vorresti parlare?"
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Immagine*</Form.Label>
-            <Form.Control type="file" onChange={handleFileChange} placeholder="Inserisci un'immagine" required />
-          </Form.Group>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button type="button" variant="danger" onClick={props.onHide}>
-            Close
-          </Button>
-          <Button type="submit" variant="success">
-            Invia
-          </Button>
-        </Modal.Footer>
-      </Form>
-    </Modal>
+        <Form onSubmit={handleSubmit}>
+          <Modal.Body>
+            <Form.Group className="mb-3">
+              <Form.Control
+                as="textarea"
+                rows={5}
+                value={text}
+                onChange={e => {
+                  setText(e.target.value);
+                }}
+                placeholder="Di cosa vorresti parlare?"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Immagine*</Form.Label>
+              <Form.Control type="file" onChange={handleFileChange} placeholder="Inserisci un'immagine" required />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button type="button" variant="danger" onClick={props.onHide}>
+              Close
+            </Button>
+            <Button type="submit" variant="success">
+              Invia
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+
+      {spinner && (
+        <div className="position-fixed top-0 start-0 bottom-0 end-0 spinnerBackground d-flex justify-content-center align-items-center">
+          <Spinner animation="grow" variant="primary" />
+        </div>
+      )}
+    </>
   );
 };
 

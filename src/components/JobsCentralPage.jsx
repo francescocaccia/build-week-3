@@ -1,4 +1,4 @@
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Button, Card, ListGroup, Form, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import JobsCollapse from "./JobsCollapse";
 import { BsArrowRight, BsBookmark } from "react-icons/bs";
@@ -10,7 +10,9 @@ const JobsCentralPage = () => {
   const totalJobs = useSelector(state => state.jobs.content?.data);
   const [jobs, setJobs] = useState([]);
   const [index, setIndex] = useState(10);
+  let queryJobs = useSelector(state => state.jobs.queryJobs?.data);
 
+  console.log(queryJobs);
   useEffect(() => {
     if (totalJobs?.length > 0) {
       counterjobs(index);
@@ -21,9 +23,7 @@ const JobsCentralPage = () => {
     const jobsArray = [];
     for (let i = 0; i < numProg; i++) {
       jobsArray.push(totalJobs[i]);
-      console.log("sono dentro al for");
     }
-    console.log("sono fuori al for");
 
     setJobs(jobsArray);
   };
@@ -64,12 +64,11 @@ const JobsCentralPage = () => {
           })}
         </div>
         {/* <JobsCollapse /> */}
-        <Button variant="secondary" onClick={handleClick}>
+        <Button className="fw-bold" variant="primary" onClick={handleClick}>
           {" "}
-          scopri di più (+10)
+          Scopri di più (+10)
         </Button>
       </Card>
-
       {/* +++++++++++++++++++++++++++++++++++++++ */}
       <Card className="mt-3 p-3">
         <div>

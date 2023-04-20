@@ -21,7 +21,7 @@ const Competenze = () => {
         <Col className="overflow-hidden">
           <div>
             <Link className="text-dark" style={{ textDecoration: "none" }}>
-              <h6>E-Learning</h6>
+              <h6>HTML</h6>
             </Link>
             <div className="d-flex justify-content-start align-items-center my-3">
               <img
@@ -39,7 +39,7 @@ const Competenze = () => {
         <Col className="overflow-hidden">
           <div>
             <Link className="text-dark" style={{ textDecoration: "none" }}>
-              <h6>E-Learning</h6>
+              <h6>CSS</h6>
             </Link>
             <div className="d-flex justify-content-start align-items-center my-3">
               <img
@@ -57,7 +57,7 @@ const Competenze = () => {
         <Col className="overflow-hidden">
           <div>
             <Link className="text-dark" style={{ textDecoration: "none" }}>
-              <h6>E-Learning</h6>
+              <h6>Javascript</h6>
             </Link>
             <div className="d-flex justify-content-start align-items-center my-3">
               <img
