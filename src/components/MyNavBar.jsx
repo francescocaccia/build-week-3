@@ -38,7 +38,7 @@ function MyNavBar() {
               <IoMdContacts className="text-secondary fs-3" />
               <span>Rete</span>
             </Link>
-            <Link to="/network" className="d-flex flex-column align-items-center nav-link">
+            <Link to="/jobs" className="d-flex flex-column align-items-center nav-link">
               <RiSuitcaseFill className="text-secondary fs-3" />
               <span>Lavoro</span>
             </Link>

@@ -18,7 +18,7 @@ const HomePage = () => {
   }, [post]);
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 ">
       <Row>
         <Col xs={3}>
           <ProfileCard />

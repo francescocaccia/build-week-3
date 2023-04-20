@@ -13,12 +13,42 @@ const ModalExperience = props => {
   let [endDate, setEndDate] = useState("");
   let [description, setDescription] = useState("");
   let [area, setArea] = useState("");
+  let [photo, setPhoto] = useState("");
 
   const hendleSubmit = e => {
     e.preventDefault();
     addExperienceFetch();
   };
+  const handleFileChange = event => {
+    setPhoto(event.target.files[0]);
+  };
+  const updatePhoto = async esperienza => {
+    const formData = new FormData();
+    formData.append("experience", photo);
 
+    const URL = `https://striveschool-api.herokuapp.com/api/profile/${profile?._id}/experiences/${esperienza._id}/picture`;
+    const headers = {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+
+        Authorization:
+          "Bearer " +
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",
+      },
+      body: formData,
+    };
+    try {
+      let risposta = await fetch(URL, headers);
+      if (risposta.ok) {
+        console.log(risposta);
+      } else {
+        console.log(risposta);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const addExperienceFetch = async () => {
     const URL = `https://striveschool-api.herokuapp.com/api/profile/${profile._id}/experiences`;
     const headers = {
@@ -42,7 +72,8 @@ const ModalExperience = props => {
     try {
       let risposta = await fetch(URL, headers);
       if (risposta.ok) {
-        // setDispatchAgg(dispatchAgg + 1);
+        let dato = await risposta.json();
+        await updatePhoto(dato);
       }
     } catch (error) {
       console.log(error);
@@ -124,7 +155,10 @@ const ModalExperience = props => {
               placeholder=" Inserisci la località"
             />
           </Form.Group>
-
+          <Form.Group className="mb-3">
+            <Form.Label>Immagine*</Form.Label>
+            <Form.Control type="file" onChange={handleFileChange} placeholder="Inserisci un'immagine" required />
+          </Form.Group>
           <small className="d-flex justify-content-end">*Le seguenti aree sono obbligatorie</small>
         </Modal.Body>
         <Modal.Footer>

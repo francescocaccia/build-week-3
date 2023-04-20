@@ -9,8 +9,14 @@
     background-size: cover;
 }
 
+.my-sticky {
+    position: sticky;
+    top: 100px;
+    z-index: 1020
+}
+
 .my_card_body {
-    height: fit-content;
+    h0eight: fit-content;
 }
 
 .vh-25 {
@@ -179,111 +185,41 @@ body {
     border: none;
 }
 
-
-/* 
-
-
-
-
-
-
-
-.side-bar .menu {
-    width: 100%;
-    margin-top: 30px;
+#buttonJobs {
+    background-color: #fefefe;
+    border: none;
 }
 
-.side-bar .menu .item {
-    position: relative;
-    cursor: pointer;
+#buttonJobs :hover {
+    background-color: rgba(243, 242, 239, 1);
+    border: none;
 }
 
-.side-bar .menu .item a {
-    color: #fff;
-    font-size: 16px;
-    text-decoration: none;
-    display: block;
-    padding: 5px 30px;
-    line-height: 60px;
+
+
+#BadgeJobs {
+    background-color: #fefefe;
+    color: #0a66c2;
+    border: none;
 }
 
-.side-bar .menu .item a:hover {
-    background: #33363a;
-    transition: 0.3s ease;
+#ButtonPubblicaJobs {
+    background-color: #fefefe;
+    color: #0a66c2;
+    border: 1px solid #0a66c2;
+    border-radius: 2rem;
+
 }
 
-.side-bar .menu .item i {
-    margin-right: 15px;
+
+.dropdown-custom::after {
+    display: none !important;
 }
 
-.side-bar .menu .item a .dropdown {
-    position: absolute;
-    right: 0;
-    margin: 20px;
-    transition: 0.3s ease;
+.dropdown-custom {
+    background-color: transparent !important;
 }
 
-.side-bar .menu .item .sub-menu {
-    background: #262627;
-    display: none;
+.threeDots {
+    background-color: white;
 }
-
-.side-bar .menu .item .sub-menu a {
-    padding-left: 80px;
-}
-
-.rotate {
-    transform: rotate(90deg);
-}
-
-.close-btn {
-    position: absolute;
-    color: #fff;
-
-    font-size: 23px;
-    right: 0px;
-    margin: 15px;
-    cursor: pointer;
-}
-
-.menu-btn {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    font-size: 35px;
-    margin: 25px;
-    cursor: pointer;
-}
-
-.main {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-}
-
-.main h1 {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 60px;
-    text-align: center;
-    line-height: 80px;
-}
-
-@media (max-width: 900px) {
-    .main h1 {
-        font-size: 40px;
-        line-height: 60px;
-    }
-}
-
-img {
-    width: 100px;
-    margin: 15px;
-    border-radius: 50%;
-    margin-left: 70px;
-    border: 3px solid #b4b8b9;
-}
-
-header {
-    background: #33363a;
-} */

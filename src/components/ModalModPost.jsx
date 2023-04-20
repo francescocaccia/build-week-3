@@ -8,9 +8,44 @@ const ModalModPost = props => {
   const handleSubmit = e => {
     e.preventDefault();
     editPost();
+    updatePhoto();
   };
-  let [text, setText] = useState(props.selectPost.text);
 
+  let [text, setText] = useState(props.selectPost.text);
+  let [photo, setPhoto] = useState(props.selectPost.image);
+
+  const handleFileChange = event => {
+    setPhoto(event.target.files[0]);
+  };
+  const updatePhoto = async () => {
+    const formData = new FormData();
+    formData.append("post", photo);
+
+    const URL = `https://striveschool-api.herokuapp.com/api/posts/${props.selectPost._id}`;
+    const headers = {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+
+        Authorization:
+          "Bearer " +
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",
+      },
+      body: formData,
+    };
+    try {
+      let risposta = await fetch(URL, headers);
+      if (risposta.ok) {
+        console.log(risposta);
+      } else {
+        console.log(risposta);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(getPostFetch());
+    }
+  };
   const editPost = async () => {
     const URL = `https://striveschool-api.herokuapp.com/api/posts/${props.selectPost._id}`;
     const headers = {
@@ -29,7 +64,7 @@ const ModalModPost = props => {
     try {
       let risposta = await fetch(URL, headers);
       if (risposta.ok) {
-        // setDispatchAgg(dispatchAgg + 1);
+        // updatePhoto()
       }
     } catch (error) {
       console.log(error);
@@ -55,7 +90,19 @@ const ModalModPost = props => {
               placeholder="Di cosa vorresti parlare?"
             />
           </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Immagine*</Form.Label>
+            <Form.Control
+              type="file"
+              // value={photo}
+
+              onChange={handleFileChange}
+              placeholder="Inserisci un'immagine"
+              required
+            />
+          </Form.Group>
         </Modal.Body>
+
         <Modal.Footer>
           <Button className="me-2" type="button" variant="danger" onClick={props.onHide}>
             Close

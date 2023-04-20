@@ -7,9 +7,42 @@ const ModalPost = props => {
   let dispatch = useDispatch();
   let profile = useSelector(state => state.profile.content);
   let [text, setText] = useState("");
+  let [photo, setPhoto] = useState("");
+
   const handleSubmit = e => {
     e.preventDefault();
     addNewPostFetch();
+  };
+
+  const handleFileChange = event => {
+    setPhoto(event.target.files[0]);
+  };
+  const updatePhoto = async post => {
+    const formData = new FormData();
+    formData.append("post", photo);
+
+    const URL = `https://striveschool-api.herokuapp.com/api/posts/${post._id}`;
+    const headers = {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+
+        Authorization:
+          "Bearer " +
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",
+      },
+      body: formData,
+    };
+    try {
+      let risposta = await fetch(URL, headers);
+      if (risposta.ok) {
+        console.log("sono in immagine", post.image, post._id);
+      } else {
+        console.log(risposta);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const addNewPostFetch = async () => {
@@ -30,7 +63,8 @@ const ModalPost = props => {
     try {
       let risposta = await fetch(URL, headers);
       if (risposta.ok) {
-        // setDispatchAgg(dispatchAgg + 1);
+        let dato = await risposta.json();
+        await updatePhoto(dato);
       }
     } catch (error) {
       console.log(error);
@@ -58,6 +92,10 @@ const ModalPost = props => {
               }}
               placeholder="Di cosa vorresti parlare?"
             />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Immagine*</Form.Label>
+            <Form.Control type="file" onChange={handleFileChange} placeholder="Inserisci un'immagine" required />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>

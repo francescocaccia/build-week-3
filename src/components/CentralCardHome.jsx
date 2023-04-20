@@ -1,4 +1,4 @@
-import { Button, Container, CloseButton } from "react-bootstrap";
+import { Button, Container, CloseButton, Dropdown, DropdownButton, Alert } from "react-bootstrap";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots } from "react-icons/bs";
@@ -8,8 +8,9 @@ import { HiOutlineArrowPathRoundedSquare } from "react-icons/hi2";
 import { BiPencil } from "react-icons/bi";
 import { BsTrash } from "react-icons/bs";
 import { getPostFetch } from "../redux/actions";
-import { useState } from "react";
+import React, { useState } from "react";
 import ModalModPost from "./ModalModPost";
+
 const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
   // const [modificaPost, setModificaPost] = useState(false);
 
@@ -63,41 +64,64 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
           </div>
         </div>
         <hr />
-        <div className="d-flex justify-content-start align-items-center ms-2">
-          <div
-            className="profile-pic mb-3"
-            style={{
-              backgroundImage: `url(${post?.user?.image})`,
-            }}
-          ></div>
-          <div className="ms-2">
-            <p className="numbers fw-bold my-0">
-              {post?.user?.name} {post?.user?.surname}
-            </p>
-            <p className="my-0 text-secondary">
-              <small>
-                {post?.user?.title} | {post?.user?.area}
-              </small>
-            </p>
-            <p className="mt-0 text-secondary">
-              <small>
-                6 giorni &#183;
-                <BiWorld className="ms-1" />
-              </small>
-            </p>
+        <div className="d-flex justify-content-between align-items-start">
+          <div className="d-flex justify-content-start align-items-center ms-2">
+            <div
+              className="profile-pic mb-3"
+              style={{
+                backgroundImage: `url(${post?.user?.image})`,
+              }}
+            ></div>
+            <div className="ms-2">
+              <p className="numbers fw-bold my-0">
+                {post?.user?.name} {post?.user?.surname}
+              </p>
+              <p className="my-0 text-secondary">
+                <small>
+                  {post?.user?.title} | {post?.user?.area}
+                </small>
+              </p>
+              <p className="mt-0 text-secondary">
+                <small>
+                  6 giorni &#183;
+                  <BiWorld className="ms-1" />
+                </small>
+              </p>
+            </div>
           </div>
+          {profile?._id === post?.user?._id && (
+            <Dropdown>
+              <Dropdown.Toggle className="dropdown-custom border-0 threeDots" id="dropdown-basic">
+                <BsThreeDots className="text-secondary" />
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu className="pt-2 pb-1">
+                <Dropdown.Item href="#/action-1">
+                  <Button variant="outline-secondary" className="border-0 " onClick={pencilOnclick}>
+                    <BiPencil className=" fs-2 pe-2" />
+                    Modifica il post
+                  </Button>
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                  <Button variant="outline-secondary" className="border-0 " onClick={() => deletePost()}>
+                    <BsTrash className=" fs-2 pe-2" />
+                    Elimina il post
+                  </Button>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
         </div>
+
         <div>
           <p className="numbers ps-3">{post?.text}</p>
-          <div className="text-center">
-            <img
-              src="https://www.dossierscuola.it/wp-content/uploads/2020/10/coding-significato.jpg"
-              alt="Post-pic"
-              width={500}
-              height={250}
-              style={{ objectFit: "cover" }}
-            />
-          </div>
+          {post?.image ? (
+            <div className="text-center">
+              <img src={post?.image} alt="Post-pic" width={500} height={250} style={{ objectFit: "cover" }} />
+            </div>
+          ) : (
+            <Alert variant="warning">Questo post non ha un'immagine</Alert>
+          )}
         </div>
         <hr />
         <div className="d-flex justify-content-between mt-3 mb-4">
@@ -125,16 +149,16 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
               <span className="text-secondary fw-semibold ms-2">Scrivi</span>
             </Button>
           </div>
-          {profile?._id === post?.user?._id && (
-            <Button variant="outline-danger" className="border-0" onClick={() => deletePost()}>
-              <BsTrash className=" fs-3" />
+          {/* {profile?._id === post?.user?._id && (
+            <Button variant="outline-secondary" className="border-0" onClick={() => deletePost()}>
+              <BsTrash className=" fs-4" />
             </Button>
           )}
           {profile?._id === post?.user?._id && (
-            <Button variant="outline-danger" className="border-0" onClick={pencilOnclick}>
-              <BiPencil className=" fs-3" />
+            <Button variant="outline-secondary" className="border-0" onClick={pencilOnclick}>
+              <BiPencil className=" fs-4" />
             </Button>
-          )}
+          )} */}
         </div>
       </Container>
       {/* {modificaPost && <ModalModPost show={modificaPost} onHide={() => setModificaPost(false)} />} */}

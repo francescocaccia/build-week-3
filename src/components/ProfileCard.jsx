@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FaSquare } from "react-icons/fa";
 import { BsBookmarkFill } from "react-icons/bs";
 import { BiPlus } from "react-icons/bi";
-import { Card, ListGroupItem, ListGroup } from "react-bootstrap";
+import { Card, ListGroupItem, ListGroup, Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 const ProfileCard = () => {
   let profile = useSelector(state => state.profile.content);
@@ -59,27 +59,29 @@ const ProfileCard = () => {
           </ListGroup.Item>
         </ListGroupItem>
       </Card>
-      <Card className="mt-2">
-        <ListGroup className="list-group-flush">
-          <ListGroup.Item className="pt-3 pb-1">
-            <Link className="text-decoration-none">
-              <p className="numbers text-primary fw-bold">Gruppi</p>
-            </Link>
-            <Link className=" d-flex justify-content-between align-items-center text-decoration-none">
-              <p className="numbers text-primary fw-bold">Eventi</p>
-              <BiPlus className="mb-3 fs-5 text-secondary" />
-            </Link>
-            <Link className="  text-decoration-none">
-              <p className="numbers text-primary fw-bold">Hashtag seguiti</p>
-            </Link>
-          </ListGroup.Item>
-          <ListGroup.Item className="pt-3 pb-1">
-            <Link className="discover text-decoration-none">
-              <p className=" mb-0 pb-2 text-secondary fw-bold fs-6">Scopri di più</p>
-            </Link>
-          </ListGroup.Item>
-        </ListGroup>
-      </Card>
+      <div className="my-sticky">
+        <Card className="mt-2">
+          <ListGroup className="list-group-flush">
+            <ListGroup.Item className="pt-3 pb-1">
+              <Link className="text-decoration-none">
+                <p className="numbers text-primary fw-bold">Gruppi</p>
+              </Link>
+              <Link className=" d-flex justify-content-between align-items-center text-decoration-none">
+                <p className="numbers text-primary fw-bold">Eventi</p>
+                <BiPlus className="mb-3 fs-5 text-secondary" />
+              </Link>
+              <Link className="  text-decoration-none">
+                <p className="numbers text-primary fw-bold">Hashtag seguiti</p>
+              </Link>
+            </ListGroup.Item>
+            <ListGroup.Item className="pt-3 pb-1">
+              <Link className="discover text-decoration-none">
+                <p className=" mb-0 pb-2 text-secondary fw-bold fs-6">Scopri di più</p>
+              </Link>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
+      </div>
     </>
   );
 };
