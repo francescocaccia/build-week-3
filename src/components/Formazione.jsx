@@ -30,12 +30,12 @@ const Formazione = () => {
               <Link className="text-dark" style={{ textDecoration: "none" }}>
                 <h6>EPICODE</h6>
               </Link>
-              <p>Master, Full Stack IT developer</p>
-              <p>gen 2023 - lug 2023</p>
+              <p>Front-End Development</p>
+              <p>gen 2023 - apr 2023</p>
+              <p>Front-end Development Bootcamp focused on: - HTML - CSS - JavaScript - Bootstrap - SASS - React.js</p>
               <p>
-                Topics covered: React - JavaScript -bootstrap - CSS - SASS - React - JavaScript -Bootstrap - CSS - SASS
+                Competenze: E-learning · Team building · Flexible Approach · SASS · Bootstrap · JavaScript · CSS · HTML
               </p>
-              <p>Competenze: Flexible Approach · Adaptation · E-Learning · Team Building · Intellectually Curious</p>
             </div>
           </div>
         </Col>
@@ -44,8 +44,8 @@ const Formazione = () => {
           <div className="d-flex justify-content-start align-items-start mt-3">
             <div>
               <img
-                src="https://th.bing.com/th/id/R.f4490bd82717461e5f4ff6fb63f6322a?rik=vLA1eWa8hyePSA&riu=http%3a%2f%2fwww.elegircarrera.net%2funiversidades%2fimages%2flogos-universidades%2fmexico%2flogo-instituto-politecnico-nacional.jpg&ehk=qFdJEfH6I%2fd0sTbglKCVkZdv8aKIb1xUeXGkmr7s1BQ%3d&risl=&pid=ImgRaw&r=0"
-                alt="epicode_logo"
+                src="https://upload.wikimedia.org/wikipedia/it/e/e2/Stemma_unipi.svg"
+                alt="Logo"
                 width={60}
                 height={60}
                 className="rounded-circle me-3"
@@ -53,14 +53,11 @@ const Formazione = () => {
             </div>
             <div>
               <Link className="text-dark" style={{ textDecoration: "none" }}>
-                <h6>ISTITUTO DANTE ALIGHIERI</h6>
+                <h6>Università degli Studi di Pisa</h6>
               </Link>
-              <p>Master, Full Stack IT developer</p>
-              <p>gen 2023 - lug 2023</p>
-              <p>
-                Topics covered: React - JavaScript -bootstrap - CSS - SASS - React - JavaScript -Bootstrap - CSS - SASS
-              </p>
-              <p>Competenze: Flexible Approach · Adaptation · E-Learning · Team Building · Intellectually Curious</p>
+              <p>Laurea magistrale in Filologie e Letterature Euroamericane</p>
+              <p>dic 2017 - lug 2021</p>
+              <p>Attività e associazioni: Orchestra dell’Università di Pisa</p>
             </div>
           </div>
         </Col>

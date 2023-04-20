@@ -12,11 +12,11 @@
 .my-sticky {
     position: sticky;
     top: 100px;
-    z-index: 1020
+
 }
 
 .my_card_body {
-    h0eight: fit-content;
+    height: fit-content;
 }
 
 .vh-25 {
@@ -207,8 +207,14 @@ body {
     background-color: #fefefe;
     color: #0a66c2;
     border: 1px solid #0a66c2;
-    border-radius: 2rem;
+    border-radius: 1.5rem;
+    width: 300px;
 
+}
+
+.small {
+    width: 150px;
+    font-size: 1rem;
 }
 
 
@@ -222,4 +228,9 @@ body {
 
 .threeDots {
     background-color: white;
+}
+
+.jobOffer:hover {
+    background-color: rgba(243, 242, 239, 1);
+
 }

@@ -96,13 +96,13 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="pt-2 pb-1">
-                <Dropdown.Item href="#/action-1">
+                <Dropdown.Item>
                   <Button variant="outline-secondary" className="border-0 " onClick={pencilOnclick}>
                     <BiPencil className=" fs-2 pe-2" />
                     Modifica il post
                   </Button>
                 </Dropdown.Item>
-                <Dropdown.Item href="#/action-2">
+                <Dropdown.Item>
                   <Button variant="outline-secondary" className="border-0 " onClick={() => deletePost()}>
                     <BsTrash className=" fs-2 pe-2" />
                     Elimina il post

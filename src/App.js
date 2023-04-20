@@ -5,7 +5,7 @@ import MyNavBar from "./components/MyNavBar";
 import ProfilePage from "./components/ProfilePage";
 import HomePage from "./components/HomePage";
 import ExperiencesPage from "./components/ExperiencesPage";
-import { getPostFetch, profileFetch } from "./redux/actions";
+import { getJobFetch, getPostFetch, profileFetch } from "./redux/actions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import JobsPage from "./components/JobsPage";
@@ -15,6 +15,7 @@ function App() {
   useEffect(() => {
     dispatch(profileFetch());
     dispatch(getPostFetch());
+    dispatch(getJobFetch());
   }, []);
   return (
     <>

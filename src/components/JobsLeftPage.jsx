@@ -1,11 +1,12 @@
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { BsBookmarkFill, BsClipboard2Check, BsFillPlayBtnFill, BsPencilSquare } from "react-icons/bs";
 import { FaBell } from "react-icons/fa";
 import { MdSettings } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const JobsLeftPage = () => {
   return (
-    <>
+    <div className="my-sticky">
       <Card className="p-4">
         <div className="d-flex align-items-center mt-2">
           <BsBookmarkFill className="mx-1 fs-4 text-secondary" />
@@ -29,13 +30,13 @@ const JobsLeftPage = () => {
         </div>
       </Card>
 
-      <Button id="ButtonPubblicaJobs" className="mt-3 d-flex aligh-items-center">
-        <BsPencilSquare />
-        <small className="ms-3 ">
-          Pubblica un offerta <br /> gratuita
-        </small>
+      <Button id="ButtonPubblicaJobs" className="mt-3 d-flex jutify-content-center align-items-center">
+        <div className="d-flex justify-content-center align-items-center">
+          <BsPencilSquare className="fs-4 ms-4" />
+          <small className="ms-3 small flex-fill fw-bold">Pubblica offerta gratuita</small>
+        </div>
       </Button>
-    </>
+    </div>
   );
 };
 

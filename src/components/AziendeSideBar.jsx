@@ -34,7 +34,7 @@ const AziendeSideBar = () => {
               <Card.Body>
                 <Card.Text>
                   <ul className="list d-flex flex-wrap justify-content-between align-items-center">
-                    <li className="m-2" variant=".bg-white">
+                    <li className="m-2 align-items-center" variant=".bg-white">
                       <ImPlay className="fs-3 text-primary" />
                       <p>
                         <small>Learning</small>
