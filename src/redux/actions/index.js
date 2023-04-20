@@ -80,7 +80,7 @@ export const getPostFetch = () => {
       let risposta = await fetch(URL, headers);
       if (risposta.ok) {
         let dato = await risposta.json();
-        dispatch(getPostAction(dato));
+        dispatch(getPostAction(dato.reverse()));
       }
     } catch (error) {
       console.log(error);

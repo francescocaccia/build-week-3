@@ -9,14 +9,19 @@ import { BiPencil } from "react-icons/bi";
 import { BsTrash } from "react-icons/bs";
 import { getPostFetch } from "../redux/actions";
 import { useState } from "react";
-// import ModalModPost from "./ModalModPost";
-const CentralCardHome = ({ post, setModificaPost }) => {
-  //   const [modificaPost, setModificaPost] = useState(false);
+import ModalModPost from "./ModalModPost";
+const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
+  // const [modificaPost, setModificaPost] = useState(false);
 
   let profile = useSelector(state => state.profile.content);
   let dispatch = useDispatch();
+  let pencilOnclick = () => {
+    console.log("sono in pencilOnclick", setModificaPost(true));
+    setModificaPost(true);
+    setSelectPost(post);
+  };
   const deletePost = async () => {
-    const URL = ` https://striveschool-api.herokuapp.com/api/posts/${post._id}`;
+    const URL = `https://striveschool-api.herokuapp.com/api/posts/${post._id}`;
     const headers = {
       method: "DELETE",
       headers: {
@@ -49,7 +54,7 @@ const CentralCardHome = ({ post, setModificaPost }) => {
               className="rounded-circle"
             />
             <small className="ms-2 numbers">
-              Consigliato da <strong>Alice Lazzeri</strong>
+              Consigliato da <strong>Domenico Dattilo</strong>
             </small>
           </div>
           <div className="d-flex align-items-center">
@@ -126,7 +131,7 @@ const CentralCardHome = ({ post, setModificaPost }) => {
             </Button>
           )}
           {profile?._id === post?.user?._id && (
-            <Button variant="outline-danger" className="border-0" onClick={() => setModificaPost(true)}>
+            <Button variant="outline-danger" className="border-0" onClick={pencilOnclick}>
               <BiPencil className=" fs-3" />
             </Button>
           )}

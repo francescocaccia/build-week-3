@@ -2,16 +2,20 @@ import { Col, Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
 import AvviaPost from "./AvviaPost";
 import Notizie from "./Notizie";
 import ProfileCard from "./ProfileCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CentralCardHome from "./CentralCardHome";
 import { useSelector } from "react-redux";
 import ModalModPost from "./ModalModPost";
 
 const HomePage = () => {
   let [azione, setAzione] = useState("Principali");
-  const [modificaPost, setModificaPost] = useState(false);
-
+  let [modificaPost, setModificaPost] = useState(false);
+  let [selectPost, setSelectPost] = useState(null);
   let post = useSelector(state => state.home.content);
+
+  useEffect(() => {
+    console.log(post);
+  }, [post]);
 
   return (
     <Container className="mt-4">
@@ -52,14 +56,16 @@ const HomePage = () => {
             </p>
           </div>
           {post.map(p => (
-            <CentralCardHome post={p} setModificaPost={setModificaPost} />
+            <CentralCardHome post={p} setSelectPost={setSelectPost} setModificaPost={setModificaPost} />
           ))}
         </Col>
         <Col xs={3}>
           <Notizie />
         </Col>
       </Row>
-      {modificaPost && <ModalModPost show={modificaPost} onHide={() => setModificaPost(false)} />}
+      {modificaPost && (
+        <ModalModPost selectPost={selectPost} show={modificaPost} onHide={() => setModificaPost(false)} />
+      )}
     </Container>
   );
 };
