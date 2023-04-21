@@ -9,13 +9,13 @@ const Chat = () => {
           key={direction}
           id={`dropdown-button-drop-${direction}`}
           drop={direction}
-          variant=".bg-white"
+          variant="light"
           title={"Messaggistica"}
           className="btnChat"
         >
           <Dropdown.Header className="fw-bold text-dark">Messaggi</Dropdown.Header>
           <Dropdown.Divider />
-          <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+          <Dropdown.Item eventKey="1">Messaggi non letti (1)</Dropdown.Item>
           <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
           <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
         </DropdownButton>
