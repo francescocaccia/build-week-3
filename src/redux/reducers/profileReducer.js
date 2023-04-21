@@ -1,8 +1,10 @@
-import { SET_PROFILE, SET_EXPERIENCE } from "../actions";
+import { SET_PROFILE, SET_EXPERIENCE, SET_PROFILE_DETAILS, MY_PROFILE_TRUE } from "../actions";
 
 const defaultState = {
   content: null,
   experience: [],
+  profileDetails: null,
+  myProfile: false,
 };
 
 const profileReducer = (state = defaultState, action) => {
@@ -17,6 +19,17 @@ const profileReducer = (state = defaultState, action) => {
         ...state,
         experience: action.payload,
       };
+    case SET_PROFILE_DETAILS:
+      return {
+        ...state,
+        profileDetails: action.payload,
+      };
+    case MY_PROFILE_TRUE:
+      return {
+        ...state,
+        myProfile: action.payload,
+      };
+
     default:
       return state;
   }

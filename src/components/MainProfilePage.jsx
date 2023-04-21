@@ -12,15 +12,15 @@ import Risorse from "./Risorse";
 import Competenze from "./Competenze";
 import ModalPhoto from "./ModalPhoto";
 import Esperienza from "./Esperienza";
-const MainProfilePage = () => {
+import { useLocation } from "react-router-dom";
+const MainProfilePage = ({ profile }) => {
   let [ModificaModale, setModificaModale] = useState(false);
   let [photoModale, setPhotoModale] = useState(false);
   const dispatch = useDispatch();
-  let profile = useSelector(state => state.profile.content);
+  const location = useLocation();
+  const profileLocation = location.pathname;
   let experience = useSelector(state => state.profile.experience);
-  // useEffect(() => {
-  //   dispatch(profileFetch());
-  // }, []);
+
   useEffect(() => {
     if (profile && profile._id != undefined) {
       dispatch(experienceFetch(profile._id));
@@ -36,32 +36,47 @@ const MainProfilePage = () => {
           className="vh-25
         "
         />
-        <Button
-          variant="light"
-          className="position-absolute top-0 end-0 bg-white px-2 pb-2 pt-0 fs-5 rounded-5 mt-3 me-3 "
-        >
-          <AiFillCamera />
-        </Button>
-        <div
-          className="profile_img"
-          style={{
-            backgroundImage: `url(${profile?.image})`,
-          }}
-          onClick={() => {
-            setPhotoModale(true);
-          }}
-        ></div>
+
+        {profileLocation === "/profile" && (
+          <Button
+            variant="light"
+            className="position-absolute top-0 end-0 bg-white px-2 pb-2 pt-0 fs-5 rounded-5 mt-3 me-3 "
+          >
+            <AiFillCamera />
+          </Button>
+        )}
+
+        {profileLocation !== "/profile" ? (
+          <div
+            className="profile_img"
+            style={{
+              backgroundImage: `url(${profile?.image})`,
+            }}
+          ></div>
+        ) : (
+          <div
+            className="profile_img"
+            style={{
+              backgroundImage: `url(${profile?.image})`,
+            }}
+            onClick={() => {
+              setPhotoModale(true);
+            }}
+          ></div>
+        )}
 
         <div className="d-flex justify-content-end mb-3 ">
-          <Button
-            variant="outline-dark"
-            className="border-0 mt-2 me-2"
-            onClick={() => {
-              setModificaModale(true);
-            }}
-          >
-            <BiPencil className="fs-3" />
-          </Button>
+          {profileLocation === "/profile" && (
+            <Button
+              variant="outline-dark"
+              className="border-0 mt-2 me-2"
+              onClick={() => {
+                setModificaModale(true);
+              }}
+            >
+              <BiPencil className="fs-3" />
+            </Button>
+          )}
         </div>
         <div className="my_card_body ms-4 mb-3">
           <Card.Title className="fs-1">{profile?.name + " " + profile?.surname}</Card.Title>
@@ -94,8 +109,8 @@ const MainProfilePage = () => {
       <Analisi />
       <Risorse />
       <Esperienza />
-      <Formazione />
-      <Competenze />
+      <Formazione profileLocation={profileLocation === "/profile"} />
+      <Competenze profileLocation={profileLocation === "/profile"} />
       {ModificaModale && <ModaleModifica show={ModificaModale} onHide={() => setModificaModale(false)} />}
       {photoModale && <ModalPhoto show={photoModale} onHide={() => setPhotoModale(false)} />}
     </>

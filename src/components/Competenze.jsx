@@ -3,7 +3,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { BiPencil } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const Competenze = () => {
+const Competenze = ({ profileLocation }) => {
   return (
     <Container className="bg-white border border-2 mt-2 rounded pt-3 ps-4 py-1 ">
       <Row>
@@ -13,8 +13,12 @@ const Competenze = () => {
             <Button className="rounded-5 border border-primary btn-light text-primary ms-3 fw-bold">
               Quiz valutazione competenze
             </Button>
-            <AiOutlinePlus className="fs-3 mx-3" />
-            <BiPencil className="fs-3" />
+            {profileLocation && (
+              <>
+                <AiOutlinePlus className="fs-3 mx-3" />
+                <BiPencil className="fs-3" />
+              </>
+            )}
           </div>
         </Col>
 

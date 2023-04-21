@@ -7,7 +7,7 @@ import { experienceFetch } from "../redux/actions";
 import { useState } from "react";
 import SingleExperienceModal from "./SingleExperienceModal";
 
-const SingleExperience = ({ esperienza }) => {
+const SingleExperience = ({ esperienza, profileLocation }) => {
   let dispatch = useDispatch();
 
   let [singleExperienceModal, setSingleExperienceModal] = useState(false);
@@ -60,20 +60,22 @@ const SingleExperience = ({ esperienza }) => {
             <strong>Descrizione:</strong>
             <p>{esperienza?.description}</p>
           </div>
-          <div className="flex-fill d-flex justify-content-end">
-            <Button
-              variant={"outline-dark"}
-              className="border-0 mx-2"
-              onClick={() => {
-                setSingleExperienceModal(true);
-              }}
-            >
-              <BiPencil className="fs-3 " />
-            </Button>
-            <Button variant={"outline-danger"} onClick={() => removeExperience()} className="border-0">
-              <BsTrash className="fs-3 text-dark" />
-            </Button>
-          </div>
+          {profileLocation && (
+            <div className="flex-fill d-flex justify-content-end">
+              <Button
+                variant={"outline-dark"}
+                className="border-0 mx-2"
+                onClick={() => {
+                  setSingleExperienceModal(true);
+                }}
+              >
+                <BiPencil className="fs-3 " />
+              </Button>
+              <Button variant={"outline-danger"} onClick={() => removeExperience()} className="border-0">
+                <BsTrash className="fs-3 text-dark" />
+              </Button>
+            </div>
+          )}
         </div>
       </Col>
       <hr />
@@ -82,6 +84,7 @@ const SingleExperience = ({ esperienza }) => {
           show={singleExperienceModal}
           esperienza={esperienza}
           onHide={() => setSingleExperienceModal(false)}
+          setSingleExperienceModal={setSingleExperienceModal}
         />
       )}
     </>

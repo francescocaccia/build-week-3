@@ -5,14 +5,17 @@ import { BsArrowRight, BsBookmark } from "react-icons/bs";
 import { GiArrowScope } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import JobModale from "./JobModale";
+import SingleJob from "./SingleJob";
 
 const JobsCentralPage = () => {
   const totalJobs = useSelector(state => state.jobs.content?.data);
   const [jobs, setJobs] = useState([]);
   const [index, setIndex] = useState(10);
-  let queryJobs = useSelector(state => state.jobs.queryJobs?.data);
 
+  let queryJobs = useSelector(state => state.jobs.queryJobs);
   console.log(queryJobs);
+
   useEffect(() => {
     if (totalJobs?.length > 0) {
       counterjobs(index);
@@ -33,6 +36,24 @@ const JobsCentralPage = () => {
   };
   return (
     <>
+      {queryJobs?.length > 0 && (
+        <Card className="p-3 mb-4s">
+          <div className="d-flex justify-content-between">
+            <h4>Risultati della ricerca</h4>
+            <Button variant="light" id="buttonJobs">
+              Cancella
+            </Button>
+          </div>
+          <div>
+            <div>
+              {queryJobs?.map(job => (
+                <SingleJob job={job} />
+              ))}
+            </div>
+          </div>
+        </Card>
+      )}
+
       <Card className="p-3">
         <div className="d-flex justify-content-between">
           <h4>Ricerche di offerte di lavoro recenti</h4>
@@ -42,26 +63,9 @@ const JobsCentralPage = () => {
         </div>
 
         <div>
-          {jobs?.map(job => {
-            return (
-              <>
-                <div key={job?._id} className="mt-3 p-2 jobOffer">
-                  <Link className="text-decoration-none text-primary">
-                    <p className="m-0 fw-bold fs-5">{job?.title}</p>
-                    <p>
-                      <small className="text-secondary fw-semibold">{job?.company}</small>
-                    </p>
-                    <p>
-                      <small className="text-dark fw-bold">{job?.company_name + " "} </small>
-
-                      <small className="text-secondary fw-light">&#183; {" " + job?.candidate_required_location}</small>
-                    </p>
-                  </Link>
-                </div>
-                <hr />
-              </>
-            );
-          })}
+          {jobs?.map(job => (
+            <SingleJob job={job} />
+          ))}
         </div>
         {/* <JobsCollapse /> */}
         <Button className="fw-bold" variant="primary" onClick={handleClick}>
@@ -148,9 +152,9 @@ const JobsCentralPage = () => {
         <hr />
 
         {/* ++++++++++ */}
-        <span className="d-flex align-items-center justify-content-center fs-5 text-secondary mb-5">
+        <span className="d-flex align-items-center justify-content-center fs-5 text-secondary mb-0">
           Mostra tutto
-          <BsArrowRight />
+          <BsArrowRight className="ms-2" />
         </span>
       </Card>
     </>

@@ -18,6 +18,7 @@ const ModalExperience = props => {
   const hendleSubmit = e => {
     e.preventDefault();
     addExperienceFetch();
+    props.setEsperienzaModale(false);
   };
   const handleFileChange = event => {
     setPhoto(event.target.files[0]);

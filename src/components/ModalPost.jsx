@@ -13,6 +13,7 @@ const ModalPost = props => {
     e.preventDefault();
     setSpinner(true);
     addNewPostFetch();
+    props.setPostModale(false);
   };
 
   const handleFileChange = event => {

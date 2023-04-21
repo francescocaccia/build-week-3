@@ -3,15 +3,19 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { BiPencil } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const Formazione = () => {
+const Formazione = ({ profileLocation }) => {
   return (
     <Container className="bg-white border border-2 mt-2 rounded pt-3 ps-4 py-5">
       <Row>
         <Col className="d-flex justify-content-between" xs={12} md={12}>
           <h5 className="fw-semibold fs-4">Formazione</h5>
           <div>
-            <AiOutlinePlus className="fs-3 mx-3" />
-            <BiPencil className="fs-3" />
+            {profileLocation && (
+              <>
+                <AiOutlinePlus className="fs-3 mx-3" />
+                <BiPencil className="fs-3" />
+              </>
+            )}
           </div>
         </Col>
 

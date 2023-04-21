@@ -9,6 +9,7 @@ const ModalModPost = props => {
     e.preventDefault();
     editPost();
     updatePhoto();
+    props.setModificaPost(false);
   };
 
   let [text, setText] = useState(props.selectPost.text);
@@ -64,7 +65,6 @@ const ModalModPost = props => {
     try {
       let risposta = await fetch(URL, headers);
       if (risposta.ok) {
-        // updatePhoto()
       }
     } catch (error) {
       console.log(error);

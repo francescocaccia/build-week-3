@@ -5,7 +5,7 @@ import JobsRightPage from "./JobsRightPage";
 
 const JobsPage = () => {
   return (
-    <Container className="mt-3">
+    <Container className="my-3">
       <Row>
         <Col xs={3}>
           <JobsLeftPage />

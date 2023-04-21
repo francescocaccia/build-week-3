@@ -1,4 +1,4 @@
-import { Col, Container, Row, Button, ListGroup, Card } from "react-bootstrap";
+import { Col, Container, Row, Button, ListGroup, Card, Spinner } from "react-bootstrap";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -11,6 +11,8 @@ import { BsArrowLeft } from "react-icons/bs";
 const ExperiencesPage = () => {
   const navigate = useNavigate();
   let [EsperienzaModale, setEsperienzaModale] = useState(false);
+  let spinner = useSelector(state => state.spinner.spinnerEsperienza);
+  let MyAccount = useSelector(state => state.profile.myProfile);
 
   let experience = useSelector(state => state.profile.experience);
   console.log(experience);
@@ -23,32 +25,43 @@ const ExperiencesPage = () => {
               <Row>
                 <Col className="d-flex justify-content-between align-items-center" xs={12} md={12}>
                   <div className="d-flex align-items-center">
-                    <Button
-                      variant="outline-dark"
-                      className="border-0 fs-4 "
-                      onClick={() => {
-                        navigate("/profile");
-                      }}
-                    >
-                      <BsArrowLeft />
-                    </Button>
+                    {MyAccount && (
+                      <Button
+                        variant="outline-dark"
+                        className="border-0 fs-4 "
+                        onClick={() => {
+                          navigate("/profile");
+                        }}
+                      >
+                        <BsArrowLeft />
+                      </Button>
+                    )}
                     <h5 className="fw-semibold fs-4 mb-0 ms-3">Esperienza</h5>
                   </div>
-                  <div>
-                    <Button
-                      variant={"outline-dark"}
-                      className="border-0"
-                      onClick={() => {
-                        setEsperienzaModale(true);
-                      }}
-                    >
-                      <AiOutlinePlus className="fs-3 " />
-                    </Button>
-                  </div>
+                  {MyAccount && (
+                    <div>
+                      <Button
+                        variant={"outline-dark"}
+                        className="border-0"
+                        onClick={() => {
+                          setEsperienzaModale(true);
+                        }}
+                      >
+                        <AiOutlinePlus className="fs-3 " />
+                      </Button>
+                    </div>
+                  )}
                 </Col>
-
-                {experience.length !== 0 &&
-                  experience.map(esperienza => <SingleExperience key={esperienza._id} esperienza={esperienza} />)}
+                {spinner && (
+                  <div className=" d-flex justify-content-center mt-5">
+                    <Spinner animation="grow" variant="primary" />
+                  </div>
+                )}
+                {!spinner &&
+                  experience.length !== 0 &&
+                  experience.map(esperienza => (
+                    <SingleExperience profileLocation={MyAccount} key={esperienza._id} esperienza={esperienza} />
+                  ))}
               </Row>
             </Container>
           </Col>
@@ -67,7 +80,13 @@ const ExperiencesPage = () => {
             </div>
           </Col>
         </Row>
-        {EsperienzaModale && <ModalExperience show={EsperienzaModale} onHide={() => setEsperienzaModale(false)} />}
+        {EsperienzaModale && (
+          <ModalExperience
+            show={EsperienzaModale}
+            onHide={() => setEsperienzaModale(false)}
+            setEsperienzaModale={setEsperienzaModale}
+          />
+        )}
       </Container>
     </>
   );

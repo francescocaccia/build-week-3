@@ -114,11 +114,21 @@ body {
     width: 300px;
 }
 
-.sentence {
+.sentence,
+.asideText {
     clear: both;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.asideText {
+    width: 55px;
+}
+
+.sidebarBody {
+    margin-left: -2rem;
+    margin-bottom: -2rem;
 }
 
 .footerText {
@@ -141,7 +151,7 @@ body {
     background-color: #fefefe;
     backdrop-filter: blur(15px);
     width: 400px;
-    height: 600px;
+    height: 650px;
     position: fixed;
     top: 85px;
     right: 0;
@@ -150,13 +160,11 @@ body {
     transition-property: left;
     z-index: 999;
     border-radius: 10px;
-
 }
 
 .side-bar::-webkit-scrollbar {
     width: 0px;
 }
-
 
 
 .side-bar.active {
@@ -204,12 +212,17 @@ body {
 }
 
 #ButtonPubblicaJobs {
-    background-color: #fefefe;
+    background-color: rgba(243, 242, 239, 1);
     color: #0a66c2;
     border: 1px solid #0a66c2;
     border-radius: 1.5rem;
     width: 300px;
+    transition: background-color 0.2s ease, border 0.2s ease-in-out;
+}
 
+#ButtonPubblicaJobs:hover {
+    background-color: #4482c05a;
+    border: 2px solid #0a66c2;
 }
 
 .spinnerBackground {
@@ -256,8 +269,6 @@ body {
     width: 300px;
     height: 50px;
     border-radius: 40px;
-
-
 }
 
 .profileChat {
@@ -265,5 +276,19 @@ body {
     width: 35px;
     border-radius: 20px;
     background-size: cover;
+}
 
+.inputBar {
+    width: 310px;
+}
+
+.btn {
+    border-radius: 20px;
+}
+
+.thumb {
+    background-color: #0a66c2;
+    color: white;
+    border-radius: 100%;
+    padding: 0.1rem;
 }

@@ -4,6 +4,16 @@ export const SET_EXPERIENCE = "SET_EXPERIENCE";
 export const GET_POST = "GET_POST";
 export const GET_JOB = "GET_JOB";
 export const GET_QUERY_JOB = "GET_QUERY_JOB";
+export const LOADER_ON = "LOADER_ON";
+export const LOADER_OFF = "LOADER_OFF";
+export const ESPERIENZA_ON = "ESPERIENZA_ON";
+export const ESPERIENZA_OFF = "ESPERIENZA_OFF";
+export const SET_PROFILE_DETAILS = "SET_PROFILE_DETAILS";
+export const MY_PROFILE_TRUE = "MY_PROFILE_TRUE";
+
+export const setProfileDetailsAction = dato => {
+  return { type: SET_PROFILE_DETAILS, payload: dato };
+};
 
 export const getQueryJobAction = dato => {
   return { type: GET_QUERY_JOB, payload: dato };
@@ -51,8 +61,33 @@ export const profileFetch = () => {
   };
 };
 
+export const profileDetailFetch = id => {
+  return async dispatch => {
+    const URL = `https://striveschool-api.herokuapp.com/api/profile/${id}`;
+    const headers = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        // mode: 'no-cors'
+        Authorization:
+          "Bearer " +
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlNDY5ZjdhYWQ5OTAwMTQ0ZjBjOTgiLCJpYXQiOjE2ODE4MDI5MzUsImV4cCI6MTY4MzAxMjUzNX0.2Lfp7xI-o5SiSeV-QyDpMq82KC7otp9TJB1rtGH22b0",
+      },
+    };
+    try {
+      let risposta = await fetch(URL, headers);
+      if (risposta.ok) {
+        let dato = await risposta.json();
+        dispatch(setProfileDetailsAction(dato));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const experienceFetch = userID => {
   return async dispatch => {
+    dispatch({ type: ESPERIENZA_ON });
     const URL = `https://striveschool-api.herokuapp.com/api/profile/${userID}/experiences`;
     const headers = {
       headers: {
@@ -70,12 +105,16 @@ export const experienceFetch = userID => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch({ type: ESPERIENZA_OFF });
     }
   };
 };
 
 export const getPostFetch = () => {
   return async dispatch => {
+    dispatch({ type: LOADER_ON });
+
     const URL = `https://striveschool-api.herokuapp.com/api/posts/`;
     const headers = {
       headers: {
@@ -93,6 +132,8 @@ export const getPostFetch = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch({ type: LOADER_OFF });
     }
   };
 };
@@ -135,7 +176,7 @@ export const getQueryJobFetch = (parametro, query) => {
       let risposta = await fetch(URL, headers);
       if (risposta.ok) {
         let dato = await risposta.json();
-        dispatch(getQueryJobAction(dato));
+        dispatch(getQueryJobAction(dato.data));
       }
     } catch (error) {
       console.log(error);

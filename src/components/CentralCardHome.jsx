@@ -1,21 +1,37 @@
-import { Button, Container, CloseButton, Dropdown, DropdownButton, Alert } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  CloseButton,
+  Dropdown,
+  DropdownButton,
+  Alert,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots } from "react-icons/bs";
 import { SlLike } from "react-icons/sl";
 import { BiMessageRoundedDetail, BiWorld } from "react-icons/bi";
 import { HiOutlineArrowPathRoundedSquare } from "react-icons/hi2";
+import { TiThumbsUp } from "react-icons/ti";
 import { BiPencil } from "react-icons/bi";
 import { BsTrash } from "react-icons/bs";
 import { getPostFetch } from "../redux/actions";
 import React, { useState } from "react";
 import ModalModPost from "./ModalModPost";
+import { useNavigate } from "react-router-dom";
+import { AiFillPicture } from "react-icons/ai";
+import { BsPlayBtnFill } from "react-icons/bs";
+import { MdNotes } from "react-icons/md";
+import { RiCalendarTodoFill } from "react-icons/ri";
+import { FaRegSmile } from "react-icons/fa";
 
 const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
-  // const [modificaPost, setModificaPost] = useState(false);
-
+  const navigate = useNavigate();
   let profile = useSelector(state => state.profile.content);
   let dispatch = useDispatch();
+  let [commento, setCommento] = useState(false);
   let pencilOnclick = () => {
     console.log("sono in pencilOnclick", setModificaPost(true));
     setModificaPost(true);
@@ -44,7 +60,7 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
 
   return (
     <>
-      <Container fluid className="bg-white border border-1 rounded pt-3 mb-4">
+      <Container fluid className="bg-white border border-1 rounded pt-3 pb-1 mt-3 mb-4">
         <div className="px-2 d-flex justify-content-between align-items-center">
           <div>
             <img
@@ -65,7 +81,12 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
         </div>
         <hr />
         <div className="d-flex justify-content-between align-items-start">
-          <div className="d-flex justify-content-start align-items-center ms-2">
+          <div
+            className="d-flex justify-content-start align-items-center ms-2"
+            onClick={() => {
+              navigate(`/profileDetails/${post?.user?._id}`);
+            }}
+          >
             <div
               className="profile-pic mb-3"
               style={{
@@ -121,6 +142,13 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
             </div>
           )}
         </div>
+        <div className="d-flex justify-content-between align-items-center pt-3 pe-3 mb-0">
+          <div className="d-flex align-items-center px-3 mt-3">
+            <TiThumbsUp className="thumb fs-5 me-2" />
+            <p className="numbers fw-normal text-secondary mb-0">Francesco Cacciapuoti e altri</p>
+          </div>
+          <p className="numbers fw-normal text-secondary mb-0 mt-3">5 Commenti &#183; 10 diffusioni post</p>
+        </div>
         <hr />
         <div className="d-flex justify-content-between mt-3 mb-4">
           <div id="iconCentralCardHome">
@@ -130,7 +158,12 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
             </Button>
           </div>
           <div id="iconCentralCardHome">
-            <Button id="iconCentralCardHome" variant="light" className="mb-0 ms-2 d-flex">
+            <Button
+              id="iconCentralCardHome"
+              variant="light"
+              className="mb-0 ms-2 d-flex"
+              onClick={() => setCommento(true)}
+            >
               <BiMessageRoundedDetail className="text-secondary fs-4 mx-1" />
               <span className="text-secondary fw-semibold ms-2">Commenta</span>
             </Button>
@@ -147,19 +180,33 @@ const CentralCardHome = ({ post, setModificaPost, setSelectPost }) => {
               <span className="text-secondary fw-semibold ms-2">Scrivi</span>
             </Button>
           </div>
-          {/* {profile?._id === post?.user?._id && (
-            <Button variant="outline-secondary" className="border-0" onClick={() => deletePost()}>
-              <BsTrash className=" fs-4" />
-            </Button>
-          )}
-          {profile?._id === post?.user?._id && (
-            <Button variant="outline-secondary" className="border-0" onClick={pencilOnclick}>
-              <BiPencil className=" fs-4" />
-            </Button>
-          )} */}
         </div>
+        {commento && (
+          <div className="bg-white border-0 rounded pb-3 pt-0 ps-2 mb-3">
+            <div className="d-flex justify-content-start align-items-center ms-2 mt-3 mb-0">
+              <div
+                className="profile-pic"
+                style={{
+                  backgroundImage: `url(${profile?.image})`,
+                }}
+              ></div>
+              <div>
+                <InputGroup>
+                  <FormControl
+                    style={{ width: "450px", padding: "10px" }}
+                    className="input rounded-pill ms-2 border border-1 text-secondary fw-light numbers"
+                    placeholder="Aggiungi un commento..."
+                  />
+                  <div className="d-flex justify-content-between align-items-center ms-2 gap-2">
+                    <FaRegSmile className="text-secondary fs-4" />
+                    <AiFillPicture className="text-secondary fs-4" />
+                  </div>
+                </InputGroup>
+              </div>
+            </div>
+          </div>
+        )}
       </Container>
-      {/* {modificaPost && <ModalModPost show={modificaPost} onHide={() => setModificaPost(false)} />} */}
     </>
   );
 };

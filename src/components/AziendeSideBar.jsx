@@ -7,6 +7,7 @@ import { TbTargetArrow } from "react-icons/tb";
 import { FaCheck, FaCompass } from "react-icons/fa";
 import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import Offcanvas from "react-bootstrap/Offcanvas";
 
 const AziendeSideBar = () => {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -31,46 +32,46 @@ const AziendeSideBar = () => {
             </div>
             <Card className="my-3 mx-4">
               <Card.Header className="py-3 text-dark fw-bold fs-6">Scopri altri prodotti LinkedIn</Card.Header>
-              <Card.Body>
+              <Card.Body className="sidebarBody">
                 <Card.Text>
                   <ul className="list d-flex flex-wrap justify-content-between align-items-center">
-                    <li className="m-2 align-items-center" variant=".bg-white">
+                    <li className="m-2 d-flex flex-column align-items-center" variant=".bg-white">
                       <ImPlay className="fs-3 text-primary" />
                       <p>
                         <small>Learning</small>
                       </p>
                     </li>
-                    <li className="m-2" variant=".bg-white">
+                    <li className="m-2 d-flex flex-column align-items-center" variant=".bg-white">
                       <BsFileEarmarkBarGraphFill className="fs-3 text-primary" />
                       <p>
                         <small>Insights</small>
                       </p>
                     </li>
-                    <li className="m-2" variant=".bg-white">
+                    <li className="m-2 d-flex flex-column align-items-center" variant=".bg-white">
                       <MdAssignment className="fs-3 text-primary" />
                       <p>
-                        <small>Pubblica un'offerta di lavoro</small>
+                        <small className="asideText">Pubblica un'offerta di lavoro</small>
                       </p>
                     </li>
-                    <li className="mx-2" variant=".bg-white">
+                    <li className="mx-2 d-flex flex-column align-items-center" variant=".bg-white">
                       <TbTargetArrow className="fs-3 text-primary" />
                       <p>
                         <small>Pubblicizza</small>
                       </p>
                     </li>
-                    <li className="m-2" variant=".bg-white">
+                    <li className="m-2 d-flex flex-column align-items-center" variant=".bg-white">
                       <FaCompass className="fs-3 text-primary" />
                       <p>
                         <small>Trova lead</small>
                       </p>
                     </li>
-                    <li className="m-2" variant=".bg-white">
+                    <li className="m-2 d-flex flex-column align-items-center" variant=".bg-white">
                       <BsPeopleFill className="fs-3 text-primary" />
                       <p>
                         <small>Gruppi</small>
                       </p>
                     </li>
-                    <li className="m-2" variant=".bg-white">
+                    <li className="m-2 d-flex flex-column align-items-center" variant=".bg-white">
                       <FaCheck className="fs-3 text-primary" />
                       <p>
                         <small>Marketplace dei servizi</small>

@@ -14,16 +14,23 @@ const ProfileCard = () => {
           src="https://th.bing.com/th/id/R.ff3be19ebea75c72d7fd8ac60ea78608?rik=AKHdPWCm7sR53g&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f1%2f8%2f1%2f465351.jpg&ehk=gTiwWaizscf0N%2fARLGhMtzE5LXZk1DMRHhdwFkriXAI%3d&risl=&pid=ImgRaw&r=0"
           height={70}
         />
+
         <Card.Body>
-          <div
-            className="profile-img"
-            style={{
-              backgroundImage: `url(${profile?.image})`,
-            }}
-          ></div>
-          <Card.Title className="pt-4 text-center fw-bold">{profile?.name + " " + profile?.surname}</Card.Title>
-          <Card.Text className="text-center fw-light">{profile?.title}</Card.Text>
+          <Link to="/profile">
+            <div
+              className="profile-img"
+              style={{
+                backgroundImage: `url(${profile?.image})`,
+              }}
+            ></div>
+          </Link>
+
+          <Card.Title className="pt-4 text-center fw-bold text-decoration-none">
+            {profile?.name + " " + profile?.surname}
+          </Card.Title>
+          <Card.Text className="text-center fw-light text-decoration-none">{profile?.title}</Card.Text>
         </Card.Body>
+
         <hr />
         <ListGroupItem className="list-group-flush px-3 pb-1">
           <ListGroup.Item className="pt-3 pb-1">

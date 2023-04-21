@@ -26,6 +26,7 @@ const SingleExperienceModal = props => {
     e.preventDefault();
     updateExperienceFetch();
     updatePhoto();
+    props.setSingleExperienceModal(false);
   };
   const handleFileChange = event => {
     setPhoto(event.target.files[0]);

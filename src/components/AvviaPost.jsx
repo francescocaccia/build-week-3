@@ -12,8 +12,8 @@ const AvviaPost = () => {
   let profile = useSelector(state => state.profile.content);
   return (
     <>
-      <Container fluid className="bg-white border border-1 rounded py-3">
-        <div className="d-flex justify-content-start align-items-center">
+      <Container fluid className="bg-white border border-1 rounded py-3 mb-3">
+        <div className="d-flex justify-content-start align-items-center ms-2 mt-3 mb-0">
           <div
             className="profile-pic"
             style={{
@@ -22,7 +22,8 @@ const AvviaPost = () => {
           ></div>
           <div className="">
             <input
-              style={{ width: "30rem", padding: "10px" }}
+              required
+              style={{ width: "530px", padding: "10px" }}
               className="input rounded-pill ms-2 border border-1 text-secondary fw-semibold"
               placeholder="Avvia un post"
               onClick={() => {
@@ -57,7 +58,9 @@ const AvviaPost = () => {
             </Button>
           </div>
         </div>
-        {PostModale && <ModalPost show={PostModale} onHide={() => setPostModale(false)} />}
+        {PostModale && (
+          <ModalPost show={PostModale} onHide={() => setPostModale(false)} setPostModale={setPostModale} />
+        )}
       </Container>
     </>
   );

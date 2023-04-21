@@ -7,7 +7,7 @@ const JobsRightPage = () => {
   let profile = useSelector(state => state.profile.content);
   return (
     <div className="my-sticky">
-      <Card className="mt-2 pb-4">
+      <Card className="pb-4">
         <ListGroup className="list-group-flush">
           <ListGroup.Item className="pt-3 pb-1">
             <p className="numbers text-end">

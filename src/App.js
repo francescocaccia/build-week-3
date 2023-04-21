@@ -9,6 +9,8 @@ import { getJobFetch, getPostFetch, profileFetch } from "./redux/actions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import JobsPage from "./components/JobsPage";
+import ProfileDetails from "./components/ProfileDetails";
+
 import Chat from "./components/Chat";
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
           <Route path="/experiences" element={<ExperiencesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/jobs" element={<JobsPage />} />
+          <Route path="/profileDetails/:profileId" element={<ProfileDetails />} />
         </Routes>
         <Chat />
       </BrowserRouter>

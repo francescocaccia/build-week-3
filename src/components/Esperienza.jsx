@@ -1,16 +1,21 @@
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Container, Row, Button, Spinner } from "react-bootstrap";
 import { AiOutlinePlus } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ModalExperience from "./ModalExperience";
 import SingleExperience from "./SingleExperience";
+import { useDispatch, useSelector } from "react-redux";
+import { MY_PROFILE_TRUE } from "../redux/actions";
 
-import { useSelector } from "react-redux";
 const Esperienza = () => {
   const navigate = useNavigate();
   let [EsperienzaModale, setEsperienzaModale] = useState(false);
   let [EsperienzaProfile, setEsperienzaProfile] = useState([]);
   let experience = useSelector(state => state.profile.experience);
+  let spinner = useSelector(state => state.spinner.spinnerEsperienza);
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const profileLocation = location.pathname;
   useEffect(() => {
     console.log("esperienza Profilo", EsperienzaProfile);
 
@@ -31,30 +36,44 @@ const Esperienza = () => {
       <Row>
         <Col className="d-flex justify-content-between" xs={12} md={12}>
           <h5 className="fw-semibold fs-4">Esperienza</h5>
-          <div>
-            <Button
-              variant={"outline-dark"}
-              className="border-0"
-              onClick={() => {
-                setEsperienzaModale(true);
-              }}
-            >
-              <AiOutlinePlus className="fs-3 " />
-            </Button>
-          </div>
+          {profileLocation === "/profile" && (
+            <div>
+              <Button
+                variant={"outline-dark"}
+                className="border-0"
+                onClick={() => {
+                  setEsperienzaModale(true);
+                }}
+              >
+                <AiOutlinePlus className="fs-3 " />
+              </Button>
+            </div>
+          )}
         </Col>
 
-        {experience.length > 0 &&
+        {!spinner &&
+          experience.length > 0 &&
           experience.length <= 3 &&
-          experience.map(esperienza => <SingleExperience key={esperienza._id} esperienza={esperienza} />)}
-        {experience.length > 3 && (
+          experience.map(esperienza => (
+            <SingleExperience
+              profileLocation={profileLocation === "/profile"}
+              key={esperienza._id}
+              esperienza={esperienza}
+            />
+          ))}
+        {!spinner && experience.length > 3 && (
           <>
             {EsperienzaProfile.map(esperienza => (
-              <SingleExperience key={esperienza?._id} esperienza={esperienza} />
+              <SingleExperience
+                key={esperienza?._id}
+                profileLocation={profileLocation === "/profile"}
+                esperienza={esperienza}
+              />
             ))}
             <Button
-              variant="secondary"
+              variant="primary"
               onClick={() => {
+                dispatch({ type: "MY_PROFILE_TRUE", payload: profileLocation === "/profile" });
                 navigate("/experiences");
               }}
             >
@@ -62,8 +81,20 @@ const Esperienza = () => {
             </Button>
           </>
         )}
+
+        {spinner && (
+          <div className=" d-flex justify-content-center mt-5">
+            <Spinner animation="grow" variant="primary" />
+          </div>
+        )}
       </Row>
-      {EsperienzaModale && <ModalExperience show={EsperienzaModale} onHide={() => setEsperienzaModale(false)} />}
+      {EsperienzaModale && (
+        <ModalExperience
+          show={EsperienzaModale}
+          onHide={() => setEsperienzaModale(false)}
+          setEsperienzaModale={setEsperienzaModale}
+        />
+      )}
     </Container>
   );
 };

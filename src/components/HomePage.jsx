@@ -1,4 +1,4 @@
-import { Col, Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import { Col, Container, Dropdown, DropdownButton, Row, Spinner } from "react-bootstrap";
 import AvviaPost from "./AvviaPost";
 import Notizie from "./Notizie";
 import ProfileCard from "./ProfileCard";
@@ -12,6 +12,7 @@ const HomePage = () => {
   let [modificaPost, setModificaPost] = useState(false);
   let [selectPost, setSelectPost] = useState(null);
   let post = useSelector(state => state.home.content);
+  let spinner = useSelector(state => state.spinner.content);
 
   useEffect(() => {
     console.log(post);
@@ -55,16 +56,28 @@ const HomePage = () => {
               </DropdownButton>
             </p>
           </div>
-          {post.map(p => (
-            <CentralCardHome post={p} setSelectPost={setSelectPost} setModificaPost={setModificaPost} />
-          ))}
+          {!spinner &&
+            post?.map(p => (
+              <CentralCardHome post={p} setSelectPost={setSelectPost} setModificaPost={setModificaPost} />
+            ))}
+
+          {spinner && (
+            <div className=" d-flex justify-content-center mt-5">
+              <Spinner animation="grow" variant="primary" />
+            </div>
+          )}
         </Col>
         <Col xs={3}>
           <Notizie />
         </Col>
       </Row>
       {modificaPost && (
-        <ModalModPost selectPost={selectPost} show={modificaPost} onHide={() => setModificaPost(false)} />
+        <ModalModPost
+          selectPost={selectPost}
+          show={modificaPost}
+          onHide={() => setModificaPost(false)}
+          setModificaPost={setModificaPost}
+        />
       )}
     </Container>
   );
