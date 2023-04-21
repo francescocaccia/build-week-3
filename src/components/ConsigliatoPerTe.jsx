@@ -9,7 +9,7 @@ const ConsigliatoPerTe = () => {
         <p className="text-secondary" variant="secondary">
           <AiFillEye /> Solo per te
         </p>
-        <Col xs={12} md={12}>
+        <Col xs={12} md={12} className="mb-3">
           <h6>Intermedio</h6>
           <div className="d-flex align-items-center">
             <ProgressBar now={90} variant="secondary" className="my_progress me-4 " />
@@ -19,20 +19,7 @@ const ConsigliatoPerTe = () => {
             Completa 1 passaggio per ragiungere il livello <small className="text-primary fw-bold">Massimo</small>
           </small>
         </Col>
-        <Col xs={12} md={12}>
-          <Row className="h-50">
-            <Col xs={1}>
-              <img
-                src="https://www.webdevelopersnotes.com/wp-content/uploads/create-a-simple-home-page.png"
-                alt=""
-                className="img-fluid"
-              />
-            </Col>
-            <Col xs={11}>
-              <p>prova</p>
-            </Col>
-          </Row>
-        </Col>
+        <Col xs={12} md={12}></Col>
       </Row>
     </Container>
   );

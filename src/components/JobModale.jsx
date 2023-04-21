@@ -10,25 +10,26 @@ const JobModale = props => {
     <>
       <Modal {...props} dialogClassName="modal-300w" aria-labelledby="jobOffer">
         <Modal.Header closeButton>
-          <Modal.Title id="jobOffer">{props.job?.title}</Modal.Title>
+          <Modal.Title id="jobOffer fw-bold">{props.job?.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>
-            <span>{props.job?.company_name}</span> &#183; <span>{props.job?.candidate_required_location}</span> &#183;{" "}
+            <span className="fw-bold">{props.job?.company_name}</span> &#183;{" "}
+            <span>{props.job?.candidate_required_location}</span> &#183;{" "}
             <span>{moment().endOf(new Date(props.job?.publication_date).toLocaleDateString()).fromNow()}</span>
           </p>
           <p className="mb-0">
-            <BsFillBriefcaseFill />
+            <BsFillBriefcaseFill className="me-2" />
             {props.job?.job_type}
           </p>
 
-          <p className="mb-0">
-            <BsPeopleFill />1 ex studente
+          <p className="mb-">
+            <BsPeopleFill className="me-2" />1 ex studente
           </p>
-          <div>
-            <Button variant="primary">
+          <div className="mb-4">
+            <Button className="me-3" variant="primary">
               Candidati
-              <CiShare1 />
+              <CiShare1 className="ms-2" />
             </Button>
             <Button variant="outline-primary">Salva</Button>
           </div>
